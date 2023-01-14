@@ -20,6 +20,35 @@
 </table>
 
 ---
+
+## 💻 멘티 💻
+<table>
+    <tr height="150px">
+        <td align="center" width="130px">
+            <a href="https://github.com/Nagnero"><img height="100px" width="100px" src="https://avatars.githubusercontent.com/u/96233261?v=4"/></a>
+            <br/>
+            <a href="https://github.com/Nagnero">Nagnero</a>
+        </td>
+        <td align="center" width="130px">
+            <a href="https://github.com/SeoeunY"><img height="100px" width="100px" src="https://avatars.githubusercontent.com/u/108859207?v=4"/></a>
+            <br/>
+            <a href="https://github.com/SeoeunY">SeoeunY</a>
+        </td>
+        <td align="center" width="130px">
+            <a href="https://github.com/moonuckjoo"><img height="100px" width="100px" src="https://avatars.githubusercontent.com/u/108858978?v=4"/></a>
+            <br/>
+            <a href="https://github.com/moonuckjoo">moonuckjoo</a>
+        </td>
+    </tr>
+</table>
+
+---
+
+## 멘토링 Notion 페이지
+[📜 [Re:coder] 객체지향프로그래밍 멘토링 📜](https://www.notion.so/luciddawn/Re-coder-74d696caf6f34dc193e621d580ef09cc)
+
+---
+
 ## Git 명령어
 [💡 Git 주요 명령어 💡](https://eehoeskrap.tistory.com/666)
 
