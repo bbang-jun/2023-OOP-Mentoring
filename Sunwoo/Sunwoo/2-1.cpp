@@ -13,32 +13,43 @@ private:
 
 public:
 	//Student_info() {}; // 기본 생성자
-	Student_info(char* name, int age, char* univ, char* major)
-	{
-		strcpy(this->name, name);
-		this->age = age;
-		strcpy(this->university, univ);
-		strcpy(this->major, major);
-	};
-	bool find(char* name)
-	{
-
-	};
-	void print() // 객체에 저장된 정보 한번 출력, main에서 반복 호출
-	{
-		cout << "Name : " << this->name << endl;
-		cout << "Age : " << this->age << endl;
-		cout << "University : " << this->university << endl;
-		cout << "Major : " << this->major << endl;
-		cout << "-------------------------" << endl;
-	};
+	Student_info(char* name, int age, char* univ, char* major);
+	bool find(char* name);
+	void print(); // 객체에 저장된 정보 한번 출력, main에서 반복 호출
 	void change(char* name, int age, char* univ, char* major);
 };
+
+Student_info::Student_info(char* name, int age, char* univ, char* major)
+{
+	strcpy(this->name, name);
+	this->age = age;
+	strcpy(this->university, univ);
+	strcpy(this->major, major);
+}
+bool Student_info::find(char* name)
+{
+	if (strcmp(this->name, name) == 0)
+		return 1;
+	else
+		return 0;
+}
+void Student_info::print()
+{
+	cout << "Name : " << this->name << endl;
+	cout << "Age : " << this->age << endl;
+	cout << "University : " << this->university << endl;
+	cout << "Major : " << this->major << endl;
+	cout << "-------------------------" << endl;
+}
+void Student_info::change(char* name, int age, char* univ, char* major)
+{
+
+}
 
 int main(void)
 {
 	char command[10] = "", name[10], univ[100], major[100];
-	int age, cnt = 0;
+	int i, age, cnt = 0;
 	Student_info* student[10];
 
 	while (1)
@@ -53,7 +64,12 @@ int main(void)
 		}
 		else if (strcmp(command, "find") == 0)
 		{
-
+			cin >> name;
+			for (i = 0; i < cnt; i++)
+			{
+				if (student[i]->find(name))
+					student[i]->print();
+			}
 		}
 		else if (strcmp(command, "change") == 0)
 		{
@@ -62,7 +78,7 @@ int main(void)
 		else if (strcmp(command, "print") == 0)
 		{
 			cout << "----------print----------" << endl;
-			for (int i = 0; i < cnt; i++)
+			for (i = 0; i < cnt; i++)
 			{
 				student[i]->print();
 			}
