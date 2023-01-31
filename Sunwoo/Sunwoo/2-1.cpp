@@ -3,6 +3,19 @@
 #include <cstring>
 using namespace std;
 
+
+#include <Windows.h>
+
+#define _CRTDBG_MAP_ALLOC
+#include <cstdlib>
+#include <crtdbg.h>
+
+#ifdef _DEBUG
+#define new new ( _NORMAL_BLOCK , __FILE__ , __LINE__ )
+#endif
+
+
+
 class Student_info
 {
 private:
@@ -43,12 +56,15 @@ void Student_info::print()
 }
 void Student_info::change(char* name, int age, char* univ, char* major)
 {
-
+	strcpy(this->name, name);
+	this->age = age;
+	strcpy(this->university, univ);
+	strcpy(this->major, major);
 }
 
 int main(void)
 {
-	char command[10] = "", name[10], univ[100], major[100];
+	char command[10] = "", temp_name[10], name[10], univ[100], major[100];
 	int i, age, cnt = 0;
 	Student_info* student[10];
 
@@ -64,6 +80,7 @@ int main(void)
 		}
 		else if (strcmp(command, "find") == 0)
 		{
+			cout << "----------find----------" << endl;
 			cin >> name;
 			for (i = 0; i < cnt; i++)
 			{
@@ -73,7 +90,11 @@ int main(void)
 		}
 		else if (strcmp(command, "change") == 0)
 		{
-
+			cin >> temp_name >> name >> age >> univ >> major;
+			for (i = 0; i < cnt; i++)
+				if (student[i]->find(temp_name))
+					break;
+			student[i]->change(name, age, univ, major);
 		}
 		else if (strcmp(command, "print") == 0)
 		{
@@ -85,16 +106,17 @@ int main(void)
 			cout << "-------------------------" << endl;
 		}
 		else if (strcmp(command, "exit") == 0)
-			return 0;
+			break;
 		else
 			continue;
 	}
 	
-
-
-
-
-
+	//for (i = 0; i < cnt; i++)
+	//	delete student[i];
 
 	cout << "-------------------------" << endl;
+
+	_CrtDumpMemoryLeaks();
+	cout << " ";
+	return 0;
 }
