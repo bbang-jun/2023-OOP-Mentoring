@@ -36,6 +36,13 @@ bool Student_info::find(char* name) {
 	}
 }
 
+void Student_info::change(char* name, int age, char* univ, char* major) {
+	strcpy(this->name, name);
+	this->age = age;
+	strcpy(this->university, univ);
+	strcpy(this->major, major);
+}
+
 //출력
 void Student_info::print() {
 	//cout << "---------"변수 들어가야 함"---------" << endl;
@@ -49,10 +56,11 @@ void Student_info::print() {
 
 
 int main() {
-	Student_info* student[10];//객체 배열 정적으로 선언
+	Student_info* student[10] ;//객체 배열 정적으로 선언
 
 	char input[20];//command 입력
 	char name_i[10];
+	char temp_name[10];
 	int age_i;
 	char univ_i[100];
 	char major_i[100];
@@ -73,7 +81,7 @@ int main() {
 				continue;
 		}
 
-		if (strcmp(input, "find") == 0) {//find 입력
+		else if (strcmp(input, "find") == 0) {//find 입력
 			cin >> name_i;
 			for (int z = 0; z < i; z++) {
 				if (student[z]->find(name_i) == 0)//동일 이름 존재 (객체 클라스 내부 함수 호출)
@@ -84,7 +92,19 @@ int main() {
 			}
 		}
 		
-		
+		else if (strcmp(input, "change") == 0) {//change 입력
+			cin >> name_i >> temp_name >> age_i >> univ_i >> major_i;
+			for (int z = 0; z < i; z++) {
+				if (student[z]->find(name_i) == 0) {//동일 이름 존재
+					student[z]->change(temp_name, age_i, univ_i, major_i);
+					break;
+				}
+			}
+		}
+
+		else if (strcmp(input, "print") == 0) {//print 입력
+
+		}
 
 		else if (strcmp(input, "exit") == 0)//프로그램 종료
 			break;
@@ -93,5 +113,7 @@ int main() {
 			continue;
 	}
 
+	for (int z = 0; z < i; z++)
+		delete student[z];
 	return 0;
 }
