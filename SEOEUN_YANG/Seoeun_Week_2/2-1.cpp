@@ -1,6 +1,5 @@
 ﻿#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
-//#include <cstdlib>//객체 배열 동적할당
 using namespace std;
 
 int i = 0;//학생 정보 저장 순서 (전역변수 선언)
@@ -64,7 +63,7 @@ int main() {
 	//int i = 0;//학생 정보 저장 순서
 
 	while (1) {//무한루프
-		cout << "Command(insert, find, change, print, exit) : ";
+		cout << "Please Enter Command(insert, find, change, print, exit) : ";
 		cin >> input;
 
 		if (strcmp(input, "insert") == 0) {//insert 입력
@@ -76,7 +75,7 @@ int main() {
 			}
 
 			else//학생 정보 10명 초과
-				continue;
+				break;
 		}
 
 		else if (strcmp(input, "find") == 0) {//find 입력
@@ -121,6 +120,3 @@ int main() {
 		delete student[z];//동적 할당 해제
 	return 0;
 }
-
-
-//print 함수 수정
