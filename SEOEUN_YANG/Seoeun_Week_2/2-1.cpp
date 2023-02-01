@@ -33,7 +33,7 @@ bool Student_info::find(char* name) {
 	}
 	else//이름 동일 X
 		return 1;
-}
+}//bool 함수이기 때문에 반환값 0,1
 
 void Student_info::change(char* name, int age, char* univ, char* major) {
 	strcpy(this->name, name);
@@ -86,7 +86,7 @@ int main() {
 					student[z]->print();//동일 학생 정보 출력
 				}
 
-				else
+				else//동일 이름 존재 X
 					continue;
 			}
 		}
@@ -95,7 +95,7 @@ int main() {
 			cin >> name_i >> temp_name >> age_i >> univ_i >> major_i;
 			for (int z = 0; z < i; z++) {
 				if (student[z]->find(name_i) == 0) {//동일 이름 존재
-					student[z]->change(temp_name, age_i, univ_i, major_i);
+					student[z]->change(temp_name, age_i, univ_i, major_i);//temp_name으로 change 함수 호출해 학생 정보 이름 다시 저장
 					break;
 				}
 			}
@@ -103,7 +103,7 @@ int main() {
 
 		else if (strcmp(input, "print") == 0) {//print 입력
 			cout << "---------print---------" << endl;
-			for (int z = 0; z < i; z++) {
+			for (int z = 0; z < i; z++) {//저장되어있는 모든 학생 정보 출력
 				student[z]->print();
 			}
 			cout << "----------------------" << endl;
@@ -113,7 +113,7 @@ int main() {
 			break;
 
 		else//잘못 입력
-			continue;
+			continue;//무시
 	}
 
 	for (int z = 0; z < i; z++)
