@@ -28,13 +28,12 @@ Student_info::Student_info(char* name, int age, char* univ, char* major) {
 };
 
 bool Student_info::find(char* name) {
-	for (int z = 0; z < i; z++) {
-		if (strcmp(this->name, name) == 0)//이름 동일
+	if (strcmp(this->name, name) == 0) {//이름 동일
 			//this->name  private에 저장되어 있는 학생 정보 이름 불러옴
-			return 0;
-		else//이름 동일 X
-			return 1;
+		return 0;
 	}
+	else//이름 동일 X
+		return 1;
 }
 
 void Student_info::change(char* name, int age, char* univ, char* major) {
@@ -46,15 +45,12 @@ void Student_info::change(char* name, int age, char* univ, char* major) {
 
 //출력
 void Student_info::print() {
-	for (int z = 0; z < i; z++) {
-		cout << "Name : "<< this->name << endl;
-		cout << "Age : "<< this->age <<endl;
-		cout << "University : "<< this->university <<endl;
-		cout << "Major : "<< this->major <<endl;
-		cout << "----------------------" << endl;
-	}
+	cout << "Name : " << this->name << endl;
+	cout << "Age : " << this->age << endl;
+	cout << "University : " << this->university << endl;
+	cout << "Major : " << this->major << endl;
+	cout << "----------------------" << endl;
 };
-
 
 int main() {
 	Student_info* student[10] ;//객체 배열 정적으로 선언
@@ -76,6 +72,7 @@ int main() {
 			if (i < 10) {//학생 정보 10명 이하
 				cin >> name_i >> age_i >> univ_i >> major_i;
 				student[i] = new Student_info(name_i, age_i, univ_i, major_i);//동적 할당 (학생 정보 저장)
+				i++;
 			}
 
 			else//학생 정보 10명 초과
@@ -84,7 +81,7 @@ int main() {
 
 		else if (strcmp(input, "find") == 0) {//find 입력
 			cin >> name_i;
-			for (int z = 0; z < i; z++) {
+			for (int z = 0; z <= i; z++) {
 				if (student[z]->find(name_i) == 0) {//동일 이름 존재 (객체 클라스 내부 함수 호출)
 					cout << "---------find---------" << endl;
 					student[z]->print();//동일 학생 정보 출력
@@ -97,7 +94,7 @@ int main() {
 		
 		else if (strcmp(input, "change") == 0) {//change 입력
 			cin >> name_i >> temp_name >> age_i >> univ_i >> major_i;
-			for (int z = 0; z < i; z++) {
+			for (int z = 0; z <= i; z++) {
 				if (student[z]->find(name_i) == 0) {//동일 이름 존재
 					student[z]->change(temp_name, age_i, univ_i, major_i);
 					break;
@@ -106,8 +103,8 @@ int main() {
 		}
 
 		else if (strcmp(input, "print") == 0) {//print 입력
-			for (int z = 0; z < i; z++) {
-				cout << "---------print---------" << endl;
+			cout << "---------print---------" << endl;
+			for (int z = 0; z <= i; z++) {
 				student[z]->print();
 			}
 			cout << "----------------------" << endl;
@@ -120,7 +117,10 @@ int main() {
 			continue;
 	}
 
-	for (int z = 0; z < i; z++)
-		delete student[z];
+	for (int z = 0; z <= i; z++)
+		delete student[z];//동적 할당 해제
 	return 0;
 }
+
+
+//print 함수 수정
