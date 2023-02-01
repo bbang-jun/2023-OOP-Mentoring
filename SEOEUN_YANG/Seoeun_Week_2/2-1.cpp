@@ -1,5 +1,6 @@
-﻿#include <iostream>
-#include <cstdlib>//객체 배열 동적할당
+﻿#define _CRT_SECURE_NO_WARNINGS
+#include <iostream>
+//#include <cstdlib>//객체 배열 동적할당
 using namespace std;
 
 int i = 0;//학생 정보 저장 순서 (전역변수 선언)
@@ -45,12 +46,12 @@ void Student_info::change(char* name, int age, char* univ, char* major) {
 
 //출력
 void Student_info::print() {
-	//cout << "---------"변수 들어가야 함"---------" << endl;
 	for (int z = 0; z < i; z++) {
-		//cout << "Name : "<<  << endl;
-		//cout << "Age : "<< <<endl;
-		//cout << "University : "<< <<endl;
-		//cout << "Major : "<< <<endl;
+		cout << "Name : "<< this->name << endl;
+		cout << "Age : "<< this->age <<endl;
+		cout << "University : "<< this->university <<endl;
+		cout << "Major : "<< this->major <<endl;
+		cout << "----------------------" << endl;
 	}
 };
 
@@ -84,8 +85,10 @@ int main() {
 		else if (strcmp(input, "find") == 0) {//find 입력
 			cin >> name_i;
 			for (int z = 0; z < i; z++) {
-				if (student[z]->find(name_i) == 0)//동일 이름 존재 (객체 클라스 내부 함수 호출)
+				if (student[z]->find(name_i) == 0) {//동일 이름 존재 (객체 클라스 내부 함수 호출)
+					cout << "---------find---------" << endl;
 					student[z]->print();//동일 학생 정보 출력
+				}
 
 				else
 					continue;
@@ -103,7 +106,11 @@ int main() {
 		}
 
 		else if (strcmp(input, "print") == 0) {//print 입력
-
+			for (int z = 0; z < i; z++) {
+				cout << "---------print---------" << endl;
+				student[z]->print();
+			}
+			cout << "----------------------" << endl;
 		}
 
 		else if (strcmp(input, "exit") == 0)//프로그램 종료
