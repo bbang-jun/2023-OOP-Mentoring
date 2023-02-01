@@ -80,7 +80,7 @@ int main() {
 
 		else if (strcmp(input, "find") == 0) {//find 입력
 			cin >> name_i;
-			for (int z = 0; z <= i; z++) {
+			for (int z = 0; z < i; z++) {
 				if (student[z]->find(name_i) == 0) {//동일 이름 존재 (객체 클라스 내부 함수 호출)
 					cout << "---------find---------" << endl;
 					student[z]->print();//동일 학생 정보 출력
@@ -93,7 +93,7 @@ int main() {
 		
 		else if (strcmp(input, "change") == 0) {//change 입력
 			cin >> name_i >> temp_name >> age_i >> univ_i >> major_i;
-			for (int z = 0; z <= i; z++) {
+			for (int z = 0; z < i; z++) {
 				if (student[z]->find(name_i) == 0) {//동일 이름 존재
 					student[z]->change(temp_name, age_i, univ_i, major_i);
 					break;
@@ -103,7 +103,7 @@ int main() {
 
 		else if (strcmp(input, "print") == 0) {//print 입력
 			cout << "---------print---------" << endl;
-			for (int z = 0; z <= i; z++) {
+			for (int z = 0; z < i; z++) {
 				student[z]->print();
 			}
 			cout << "----------------------" << endl;
@@ -116,7 +116,7 @@ int main() {
 			continue;
 	}
 
-	for (int z = 0; z <= i; z++)
+	for (int z = 0; z < i; z++)
 		delete student[z];//동적 할당 해제
 	return 0;
 }
