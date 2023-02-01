@@ -35,24 +35,25 @@ void Student_info::print() {
 
 
 int main() {
-	Student_info* student = new Student_info[10];//객체 배열 동적할당 모르겠다...
-	for (int z = 0; z < 10; z++) {
-		student[z].name="a";
-		student[z].age = 0;
-		student[z].university = "a";
-		student[z].major = "a";
-	}//private이라서 접근 불가
+	Student_info* student[10];//객체 배열 정적으로 선언
 
-
-	char input[100];//command 입력
+	char input[20];//command 입력
+	char name_i[10];
+	int age_i;
+	char univ_i[100];
+	char major_i[100];
 	int i = 0;//학생 정보 저장 순서
 
-
 	while (1) {//무한루프
+		cout << "Command(insert, find, change, print, exit) : ";
 		cin >> input;
-		if (strcmp(input, "insert") == 0) {//같음
+		if (strcmp(input, "insert") == 0) {//insert 입력
+			cin >> name_i >> age_i >> univ_i >> major_i;
+			student[i] = new Student_info(name_i, age_i, univ_i, major_i);//동적 할당
+
+
 			//저장
-			//저장할 때 strtok 함수도 써야되나
+			
 		}
 
 		
