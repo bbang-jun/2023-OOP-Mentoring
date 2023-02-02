@@ -27,7 +27,7 @@ public: // 값을 입력받아서 private에 저장
 	};
 	void print()  //private의 저장된 것 출력
 	{
-		cout << "----------print----------";
+		cout << "----------print----------" << endl;
 		cout << "Name : " << this->name << endl;
 		cout << "Age : " << this->age << endl;
 		cout << "University : " << this->university << endl;
@@ -36,13 +36,10 @@ public: // 값을 입력받아서 private에 저장
 	};
 	void change(char* name, int age, char* univ, char* major)
 	{
-		if (strcmp(this->name, name) == 0)
-		{
 			strcpy(this->name, name);
 			strcpy(this->university, univ);
 			strcpy(this->major, major);
 			this->age = age;
-		}
 	};
 	~Student_info() {
 	};
@@ -72,24 +69,29 @@ public: // 값을 입력받아서 private에 저장
 			else if (strcmp(input, "find") == 0)
 			{
 				cin >> findname;
-				for (int j = 0; j < 10; j++) {
-					if (Student[i]->find(findname) == 0)
-						Student[i]->print();
+				for (int j = 0; j < i; j++) {
+					if (Student[j]->find(findname) == 0)
+						Student[j]->print();
 				}
 			}
-			else if (strcmp(input, "change"))
+			else if (strcmp(input, "change")==0)
 			{
-				for (int l = 0; l < 10; l++)
+				cin >> findname >> mainname >> mainage >> mainuniv >> mainmajor;
+				for (int l = 0; l < i; l++)
 				{
-					Student[l]->change(findname, mainage, mainuniv, mainmajor);
+					Student[l]->find(findname);
+					if (Student[l]->find(findname) == 0)
+					{
+						Student[l]->change(mainname, mainage, mainuniv, mainmajor);
+					}
 				}
 			}
 			else if (strcmp(input, "print") == 0)
 			{
-				for(int k=0;k<10;k++)
-					Student[i]->print();
+				for(int k=0;k<i;k++)
+					Student[k]->print();
 			}
-			else if (i > 9 || strcmp(input, "exit"))
+			else if (strcmp(input, "exit")==0)
 				break;
 
 			else
