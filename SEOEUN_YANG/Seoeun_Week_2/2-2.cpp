@@ -88,7 +88,7 @@ int main() {
 			int cnt = 0;
 			cin >> species_i;
 			cout << "------print_species------" << endl;
-			Zoo->find(species_i,cnt);
+			cnt=Zoo->find(species_i,cnt);
 			cout << "Number of species is :" << cnt << endl;
 			cout << "---------------------" << endl;
 		}
