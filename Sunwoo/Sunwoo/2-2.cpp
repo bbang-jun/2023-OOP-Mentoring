@@ -3,62 +3,89 @@
 #include <cstring>
 using namespace std;
 
+
+#include <Windows.h>
+
+#define _CRTDBG_MAP_ALLOC
+#include <cstdlib>
+#include <crtdbg.h>
+
+#ifdef _DEBUG
+#define new new ( _NORMAL_BLOCK , __FILE__ , __LINE__ )
+#endif
+
+
 class animal {
 private:
 	char name[10];
 	int year = 0;
 	char species[100];
 public:
-	void save(char* name, int age, char* species)
-	{
-		strcpy(this->name, name);
-		this->year = age;
-		strcpy(this->species, species);
-	}
-	char* getName()
-	{
-		return this->name;
-	}
-	int getAge()
-	{
-		return this->year;
-	}
-	char* getSpecies()
-	{
-		return this->species;
-	}
+	animal() {};
+	void save(char* name, int age, char* species);
+	char* getName();
+	int getAge();
+	char* getSpecies();
 };
+
+void animal::save(char* name, int age, char* species)
+{
+	strcpy(this->name, name);
+	this->year = age;
+	strcpy(this->species, species);
+}
+char* animal::getName()
+{
+	return this->name;
+}
+int animal::getAge()
+{
+	return this->year;
+}
+char* animal::getSpecies()
+{
+	return this->species;
+}
+
 
 class zoo {
 private:
 	class animal* animal_list[100];
 	int size = 0;
 public:
-
-	void save(char* name, int age, char* species)
-	{
-		animal_list[size] = new animal;
-		animal_list[size]->save(name, age, species);
-		size++;
-	};
-	void print(int i)
-	{
-		cout << "----------" << i << "----------" << endl;
-		cout << "Name :" << animal_list[i]->getName() << endl;
-		cout << "Year :" << animal_list[i]->getAge() << endl;
-		cout << "Species :" << animal_list[i]->getSpecies() << endl;
-		cout << "---------------------" << endl;
-	}
-	bool find(int i, char* species)
-	{
-		if (strcmp(animal_list[i]->getSpecies(), species) == 0)
-		{
-			return 1;
-		}
-		else
-			return 0;
-	}
+	void save(char* name, int age, char* species);
+	void print(int i);
+	bool find(int i, char* species);
+	~zoo();
 };
+
+void zoo::save(char* name, int age, char* species)
+{
+	animal_list[size] = new animal;
+	animal_list[size]->save(name, age, species);
+	size++;
+};
+void zoo::print(int i)
+{
+	cout << "----------" << i << "----------" << endl;
+	cout << "Name :" << animal_list[i]->getName() << endl;
+	cout << "Year :" << animal_list[i]->getAge() << endl;
+	cout << "Species :" << animal_list[i]->getSpecies() << endl;
+	cout << "---------------------" << endl;
+}
+bool zoo::find(int i, char* species)
+{
+	if (strcmp(animal_list[i]->getSpecies(), species) == 0)
+	{
+		return 1;
+	}
+	else
+		return 0;
+}
+zoo::~zoo() {
+	for (int i = 0; i < this->size; i++)
+		delete[] animal_list[i];
+}
 
 int main()
 {
@@ -105,7 +132,7 @@ int main()
 			continue;
 	}
 
-
+	_CrtDumpMemoryLeaks();
 
 	return 0;
 }

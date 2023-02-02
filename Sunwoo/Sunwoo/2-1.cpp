@@ -101,7 +101,7 @@ int main(void)
 	}
 	
 	for (i = 0; i < cnt; i++) // 동적할당 해제
-		delete student[i];
+		delete[] student[i];
 
 	cout << "-------------------------" << endl;
 
