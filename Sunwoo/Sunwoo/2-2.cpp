@@ -9,12 +9,23 @@ private:
 	int year = 0;
 	char species[100];
 public:
-	animal() {  };
 	void save(char* name, int age, char* species)
 	{
 		strcpy(this->name, name);
 		this->year = age;
 		strcpy(this->species, species);
+	}
+	char* getName()
+	{
+		return this->name;
+	}
+	int getAge()
+	{
+		return this->year;
+	}
+	char* getSpecies()
+	{
+		return this->species;
 	}
 };
 
@@ -23,23 +34,28 @@ private:
 	class animal* animal_list[100];
 	int size = 0;
 public:
-	zoo() {};
+
 	void save(char* name, int age, char* species)
 	{
 		animal_list[size] = new animal;
 		animal_list[size]->save(name, age, species);
 		size++;
 	};
-	/*zoo() {
-		animal* Animal[100];
+	void print(int i)
+	{
+		cout << "----------" << i << "----------" << endl;
+		cout << "Name :" << animal_list[i]->getName() << endl;
+		cout << "Year :" << animal_list[i]->getAge() << endl;
+		cout << "Species :" << animal_list[i]->getSpecies() << endl;
+		cout << "---------------------" << endl;
 	}
-	void save();*/
+
 };
 
 int main()
 {
 	char command[20], name[10], species[100];
-	int age, cnt = 0;
+	int age, i, cnt = 0;
 	zoo* Zoo = new zoo;
 
 	while (1)
@@ -56,7 +72,8 @@ int main()
 		else if (strcmp(command, "print_all") == 0)
 		{
 			cout << "------print_all------" << endl;
-			// 정보출력 멤버함수 호출, cnt 전달
+			for (i = 0; i < cnt; i++)
+				Zoo->print(i);
 			cout << "---------------------" << endl;
 		}
 		else if (strcmp(command, "print_species") == 0)
