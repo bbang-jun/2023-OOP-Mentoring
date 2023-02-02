@@ -52,7 +52,7 @@ void Student_info::print() {
 };
 
 int main() {
-	Student_info* student[10] ;//객체 배열 정적으로 선언
+	Student_info* student[10];//객체 배열 정적으로 선언
 
 	char input[20];//command 입력
 	char name_i[10];
