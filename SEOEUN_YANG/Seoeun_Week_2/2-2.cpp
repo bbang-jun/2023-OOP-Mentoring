@@ -27,10 +27,9 @@ public:
 	}
 	void size_setter(int size) { this->size = size; }
 	int size_getter() { return this->size; }
-	void animal_getter(int size) {
-		this->animal_list[size];
-	}
+
 	void print(int i);
+	int find(char* species_i,int cnt);
 	//zoo(animal_list[]);	
 };
 
@@ -42,11 +41,21 @@ animal::animal(char* name, int year, char* species) {//동물 저장
 
 void zoo::print(int i) {
 	cout << "----------" << i << "----------" << endl;
-	animal_getter(size);
 	cout << "Name : " << animal_list[i]->get_name() << endl;
 	cout << "Year : " << animal_list[i]->get_year() << endl;
 	cout << "Species : " << animal_list[i]->get_species() << endl;
 	cout << "---------------------" << endl;
+}
+
+int zoo::find(char* species_i,int cnt) {
+	int size = size_getter();
+	for (int i = 0; i < size; i++) {
+		if (strcmp(animal_list[i]->get_species(), species_i) == 0) {
+			print(i);
+			cnt++;
+		}
+	}
+	return cnt;
 }
 
 int main() {
@@ -76,7 +85,12 @@ int main() {
 		}
 
 		else if (strcmp(input, "print_species") == 0) {
-			//d
+			int cnt = 0;
+			cin >> species_i;
+			cout << "------print_species------" << endl;
+			Zoo->find(species_i,cnt);
+			cout << "Number of species is :" << cnt << endl;
+			cout << "---------------------" << endl;
 		}
 
 		else if (strcmp(input, "exit") == 0)//exit 입력
