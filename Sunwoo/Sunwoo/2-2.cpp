@@ -49,7 +49,15 @@ public:
 		cout << "Species :" << animal_list[i]->getSpecies() << endl;
 		cout << "---------------------" << endl;
 	}
-
+	bool find(int i, char* species)
+	{
+		if (strcmp(animal_list[i]->getSpecies(), species) == 0)
+		{
+			return 1;
+		}
+		else
+			return 0;
+	}
 };
 
 int main()
@@ -65,7 +73,7 @@ int main()
 		if (strcmp(command, "new_animal") == 0)
 		{
 			cin >> name >> age >> species;
-			// 데이터 저장 멤버함수 호출, cnt, name, age, species 전달
+			// 데이터 저장 멤버함수 호출; name, age, species 전달
 			Zoo->save(name, age, species);
 			cnt++;
 		}
@@ -78,9 +86,17 @@ int main()
 		}
 		else if (strcmp(command, "print_species") == 0)
 		{
+			int same = 0;
 			cin >> species;
 			cout << "------print_species------" << endl;
 			// 종 개수 세는 멤버함수 호출, species 전달
+			for (i = 0; i < cnt; i++)
+				if (Zoo->find(i, species))
+				{
+					Zoo->print(i);
+					same++;
+				}
+			cout << "Number of Species is :" << same << endl;
 			cout << "---------------------" << endl;
 		}
 		else if (strcmp(command, "exit") == 0)
