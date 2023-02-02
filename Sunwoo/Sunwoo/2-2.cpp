@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <cstring>
 using namespace std;
@@ -8,7 +9,13 @@ private:
 	int year = 0;
 	char species[100];
 public:
-
+	animal() {  };
+	void save(char* name, int age, char* species)
+	{
+		strcpy(this->name, name);
+		this->year = age;
+		strcpy(this->species, species);
+	}
 };
 
 class zoo {
@@ -16,6 +23,13 @@ private:
 	class animal* animal_list[100];
 	int size = 0;
 public:
+	zoo() {};
+	void save(char* name, int age, char* species)
+	{
+		animal_list[size] = new animal;
+		animal_list[size]->save(name, age, species);
+		size++;
+	};
 	/*zoo() {
 		animal* Animal[100];
 	}
@@ -36,6 +50,7 @@ int main()
 		{
 			cin >> name >> age >> species;
 			// 데이터 저장 멤버함수 호출, cnt, name, age, species 전달
+			Zoo->save(name, age, species);
 			cnt++;
 		}
 		else if (strcmp(command, "print_all") == 0)
