@@ -2,6 +2,15 @@
 #include <iostream>
 #include <cstring>
 using namespace std;
+#include <Windows.h>
+
+#define _CRTDBG_MAP_ALLOC
+#include <cstdlib>
+#include <crtdbg.h>
+
+#ifdef _DEBUG
+#define new new ( _NORMAL_BLOCK , __FILE__ , __LINE__ )
+#endif
 
 class animal {
 private:
@@ -12,63 +21,82 @@ public:
 	void setname(char* name) { strcpy(this->name,name); };
 	void setyear(int year) { this->year = year; };
 	void setspecies(char* species) { strcpy(this->species,species); };
-	string getname() { return this->name; };
+	char* getname() { return this->name; };
 	int getyear() { return this->year; };
-	string getspecies() { return this->species; };
+	char* getspecies() { return this->species; };
 };
 class zoo{
 private:
 	class animal* animal_list[100];
 	int size = 0;
 public:
-	void new_animal(char* name, int year, char* species, int cnt) 
+	void new_animal(char* name, int year, char* species) 
 	{
-		animal_list[cnt]->setname(name);
-		animal_list[cnt]->setyear(year);
-		animal_list[cnt]->setspecies(species);
-
+		animal_list[size] = new animal();
+		animal_list[size]->setname(name);
+		animal_list[size]->setyear(year);
+		animal_list[size]->setspecies(species);
+		size++;
 	};
 	void print_all(int n) { 
 		cout << "----------"<<n<<"----------" << endl;
-		cout << "Name : " << animal_list[n - 1]->getname() << endl;
-		cout << "Year : " << animal_list[n - 1]->getyear() << endl;
-		cout << "Species : " << animal_list[n - 1]->getspecies() << endl;
+		cout << "Name : " << animal_list[n]->getname() << endl;
+		cout << "Year : " << animal_list[n]->getyear() << endl;
+		cout << "Species : " << animal_list[n]->getspecies() << endl;
 		cout << "-------------------------" << endl;
 	};
-	void print_species(int k, char* find_species) {
+	int print_species(char* find_species, int k) {
 		{
-
+			if (strcmp(animal_list[k]->getspecies(), find_species) == 0)
+				return 0;
 		}
 	};
+	~zoo() {
+		for(int i =0; i<size;i++)
+			delete[] animal_list;
+	}
 
 };
 int main(void)
 {
+	zoo* Wonju = new zoo;
+	char input[30] = { 0 };
+	char find_species[100];
+	char name[10] = { 0 };
+	int year = 0;
+	char species[100] = { 0 };
+	int cnt = 0;
+
 	while (1)
 	{
 		cout << "Please Enter Any Command(new_animal, print_all, print_species, exit) : ";
-		int cnt = 0;
-		char input[30]= {0};
-		char find_species[100];
+		cin >> input;
 		if (strcmp(input, "new_animal") == 0)
 		{
+			cin >> name >> year >> species;
+			Wonju->new_animal(name, year, species);
 			cnt++;
 		}
 		else if (strcmp(input, "print_all") == 0)
 		{
-			for (int j = 0; j < cnt; j++) {
+			for (int j = 0; j < cnt ; j++) {
+				Wonju->print_all(j);
 			}
 		}
 		else if (strcmp(input, "print_species") == 0)
 		{
-
+			cin >> find_species;
+			for (int i = 0; i < cnt; i++) {
+				Wonju->print_species(find_species, i);
+				if (Wonju->print_species(find_species, i) == 0)
+					Wonju->print_all(i);
+				
+			}
 		}
 		else if (strcmp(input, "exit") == 0)
 			break;
-		else
-			cout << "Please Enter Any Command(new_animal, print_all, print_species, exit) : ";
-		
-		
-
 	}
+	delete Wonju;
+	_CrtDumpMemoryLeaks();
+	return 0;
 }

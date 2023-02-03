@@ -1,8 +1,17 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <cstring>
-
 using namespace std;
+#include <Windows.h>
+
+#define _CRTDBG_MAP_ALLOC
+#include <cstdlib>
+#include <crtdbg.h>
+
+#ifdef _DEBUG
+#define new new ( _NORMAL_BLOCK , __FILE__ , __LINE__ )
+#endif
+
 class Student_info {
 private:
 	char name[10];
@@ -101,5 +110,6 @@ public: // 값을 입력받아서 private에 저장
 			}
 		}
 		delete Student;
+		_CrtDumpMemoryLeaks();
 		return 0;
 	}
