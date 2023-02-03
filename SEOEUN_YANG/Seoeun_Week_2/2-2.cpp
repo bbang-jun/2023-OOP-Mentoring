@@ -32,7 +32,10 @@ public:
 	int find(char* species_i,int cnt);//같은 종 검색
 	
 	~zoo() {//소멸자
-		delete[]animal_list;//동적할당 해제
+		size = size_getter();
+		for (int i = 0; i < size; i++) {
+			delete[] animal_list;//동적할당 해제
+		}
 	}
 };
 
