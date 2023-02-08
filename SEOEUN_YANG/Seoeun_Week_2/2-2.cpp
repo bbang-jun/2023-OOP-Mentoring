@@ -34,7 +34,7 @@ public:
 	~zoo() {//소멸자
 		size = size_getter();
 		for (int i = 0; i < size; i++) {
-			delete[] animal_list;//동적할당 해제
+			delete[] animal_list[i];//동적할당 해제
 		}
 	}
 };
