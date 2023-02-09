@@ -48,6 +48,7 @@ public:
 	void PRINT();
 	void PRINT_REVERSE();
 	void SORT_NAME();
+	void SORT_ID();
 };
 
 void List::INSERT(int input, string name)
@@ -121,28 +122,53 @@ void List::PRINT_REVERSE()
 
 void List::SORT_NAME()
 {
-	int step, i, temp_ID;
+	int temp_ID;
 	string temp_name;
-	Node* curNode1 = head;
-	Node* curNode2 = curNode1->getNext();
+	Node* curNode = head;
+	Node* lastNode = tail;
 
-	while (curNode1 != NULL)
+	while (head != lastNode)
 	{
-		while (curNode2 != NULL)
+		curNode = head;
+		while (curNode != lastNode)
 		{
-			if (curNode2->getPrev()->getName() > curNode2->getName())
+			if (curNode->getName() > curNode->getNext()->getName())
 			{
-				temp_name = curNode2->getName();
-				temp_ID = curNode2->getID();
-				curNode2->setValue(curNode2->getPrev()->getID(), curNode2->getPrev()->getName());
-				curNode2->getPrev()->setValue(temp_ID, temp_name);
+				temp_ID = curNode->getID();
+				temp_name = curNode->getName();
+				curNode->setValue(curNode->getNext()->getID(), curNode->getNext()->getName());
+				curNode->getNext()->setValue(temp_ID, temp_name);
 			}
-			curNode2 = curNode2->getNext();
+			curNode = curNode->getNext();
 		}
-		curNode1= curNode1->getNext();
+		lastNode = lastNode->getPrev();
 	}
-	cout << "a";
 
+	PRINT();
+}
+
+void List::SORT_ID()
+{
+	int temp_ID;
+	string temp_name;
+	Node* curNode = head;
+	Node* lastNode = tail;
+	while (head != lastNode)
+	{
+		curNode = head;
+		while (curNode != lastNode)
+		{
+			if (curNode->getID() > curNode->getNext()->getID())
+			{
+				temp_ID = curNode->getID();
+				temp_name = curNode->getName();
+				curNode->setValue(curNode->getNext()->getID(), curNode->getNext()->getName());
+				curNode->getNext()->setValue(temp_ID, temp_name);
+			}
+			curNode = curNode->getNext();
+		}
+		lastNode = lastNode->getPrev();
+	}
 }
 
 int main()
@@ -171,6 +197,10 @@ int main()
 		else if (command == 4)
 		{
 			Linked_List->SORT_NAME();
+		}
+		else if (command == 5)
+		{
+			Linked_List->SORT_ID();
 		}
 	}
 }
