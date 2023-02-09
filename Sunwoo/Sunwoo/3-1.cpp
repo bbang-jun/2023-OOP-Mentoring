@@ -46,7 +46,7 @@ public:
 	}
 	void INSERT(int input, char* name);
 	void PRINT();
-
+	void PRINT_REVERSE();
 };
 
 void List::INSERT(int input, char* name)
@@ -107,6 +107,17 @@ void List::PRINT()
 	}
 }
 
+void List::PRINT_REVERSE()
+{
+	Node* curNode = tail;
+
+	while (curNode != NULL)
+	{
+		cout << curNode->getID() << " " << curNode->getName() << endl;
+		curNode = curNode->getPrev();
+	}
+}
+
 int main()
 {
 	int command = 0, input;
@@ -125,6 +136,10 @@ int main()
 		else if (command == 2)
 		{
 			Linked_List->PRINT();
+		}
+		else if (command == 3)
+		{
+			Linked_List->PRINT_REVERSE();
 		}
 	}
 }
