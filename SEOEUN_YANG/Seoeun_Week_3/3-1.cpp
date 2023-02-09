@@ -81,7 +81,7 @@ int main(void) {
 	char name[100];
 
 	List* valueList = new List;
-
+	
 	while (1) {
 		cout << "Please Enter Command(1 : insert, 2 : print, 3 : print_reverse, 4 : sort_by_name, 5 : sort_by_ID, 6 : delete, 7 : exit) : ";
 		cin >> command;
