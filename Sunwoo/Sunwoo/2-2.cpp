@@ -5,26 +5,25 @@ using namespace std;
 
 class animal {
 private:
-	char name[10];
+	string name;
 	int year = 0;
-	char species[100];
+	string species;
 public:
-	animal() {};
-	void save(char* name, int age, char* species);
-	char* getName();
+	void save(string name, int age, string species);
+	string getName();
 	int getAge();
-	char* getSpecies();
+	string getSpecies();
 };
 
 // 동물 저장 멤버메서드; 이름과 나이 종을 각각의 객체에 저장함
-void animal::save(char* name, int age, char* species)
+void animal::save(string name, int age, string species)
 {
-	strcpy(this->name, name);
+	this->name = name;
 	this->year = age;
-	strcpy(this->species, species);
+	this->species = species;
 }
 // 이름 getter; 객체에 저장된 이름을 반환함
-char* animal::getName()
+string animal::getName()
 {
 	return this->name;
 }
@@ -34,7 +33,7 @@ int animal::getAge()
 	return this->year;
 }
 // 종 getter; 객체에 저장된 종을 반환함
-char* animal::getSpecies()
+string animal::getSpecies()
 {
 	return this->species;
 }
@@ -45,14 +44,14 @@ private:
 	class animal* animal_list[100];
 	int size = 0;
 public:
-	void save(char* name, int age, char* species);
+	void save(string name, int age, string species);
 	void print(int i);
-	bool find(int i, char* species);
+	bool find(int i, string species);
 	~zoo();
 };
 
 // zoo 객체에서 animal 객체를 동적할당
-void zoo::save(char* name, int age, char* species)
+void zoo::save(string name, int age, string species)
 {
 	animal_list[size] = new animal;
 	animal_list[size]->save(name, age, species);
@@ -68,9 +67,9 @@ void zoo::print(int i)
 	cout << "---------------------" << endl;
 }
 // 입력받은 종과 저장된 종이 같으면 1을 반환하는 메서드
-bool zoo::find(int i, char* species)
+bool zoo::find(int i, string species)
 {
-	if (strcmp(animal_list[i]->getSpecies(), species) == 0)
+	if (animal_list[i]->getSpecies() == species)
 	{
 		return 1;
 	}
@@ -85,7 +84,7 @@ zoo::~zoo() {
 
 int main()
 {
-	char command[20], name[10], species[100];
+	string command, name, species;
 	int age, i, cnt = 0;
 	zoo* Zoo = new zoo;
 
@@ -93,21 +92,21 @@ int main()
 	{
 		cout << "Please Enter Any Command(new_animal,print_all,print_species,exit) :";
 		cin >> command;
-		if (strcmp(command, "new_animal") == 0) // command가 new_animal이면
+		if (command == "new_animal") // command가 new_animal이면
 		{
 			cin >> name >> age >> species;
 			// 데이터 저장 멤버함수 호출; name, age, species 전달
 			Zoo->save(name, age, species);
 			cnt++;
 		}
-		else if (strcmp(command, "print_all") == 0) // command가 print_all이면
+		else if (command == "print_all") // command가 print_all이면
 		{
 			cout << "------print_all------" << endl;
 			for (i = 0; i < cnt; i++) // 각각의 객체에 접근하여 zoo클래스의 print메서드 호출
 				Zoo->print(i);
 			cout << "---------------------" << endl;
 		}
-		else if (strcmp(command, "print_species") == 0) // command가 print_species이면
+		else if (command == "print_species") // command가 print_species이면
 		{
 			int same = 0; // 같은 종을 세는 변수
 			cin >> species;
@@ -122,7 +121,7 @@ int main()
 			cout << "Number of Species is :" << same << endl;
 			cout << "---------------------" << endl;
 		}
-		else if (strcmp(command, "exit") == 0) // command가 exit이면 무한반복문 탈출
+		else if (command == "exit") // command가 exit이면 무한반복문 탈출
 			break;
 		else // 어느 것도 해당되지 않으면 반복
 			continue;
