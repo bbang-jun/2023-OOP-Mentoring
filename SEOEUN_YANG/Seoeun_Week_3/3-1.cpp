@@ -10,6 +10,7 @@ private:
 public:
 	Node() {//생성자
 		ID = 0;//초기화
+		strcpy(this->name, "");
 		this->next = NULL;//초기화
 	}
 	void setID(int ID) { this->ID = ID; }//데이터 저장
@@ -42,8 +43,8 @@ public:
 		}
 	}
 	void INSERT(int ID,char* name);
-	void FIND(int value);
 	void PRINT();
+	void FIND(int value);
 	void DELETE(int value);
 };
 
@@ -51,7 +52,7 @@ void List::INSERT(int ID, char* name) {
 	Node* curNode = head;
 	Node* newNode = new Node;
 	newNode->setID(ID);
-	newNode->setname(name);//노드 뎅이터 저장
+	newNode->setname(name);//노드 데이터 저장
 
 	if (head == NULL) {
 		tail = head = newNode;
@@ -65,7 +66,14 @@ void List::INSERT(int ID, char* name) {
 	}
 }
 
+void List::PRINT() {
+	Node* curNode = head;//첫번째 노드부터 차례로 출력
 
+	while (curNode != NULL) {
+		cout << curNode->getID() << " " << curNode->getname() << endl;
+		curNode = curNode->getNext();
+	}
+}
 
 int main(void) {
 	int command;
@@ -77,14 +85,14 @@ int main(void) {
 	while (1) {
 		cout << "Please Enter Command(1 : insert, 2 : print, 3 : print_reverse, 4 : sort_by_name, 5 : sort_by_ID, 6 : delete, 7 : exit) : ";
 		cin >> command;
+
 		if (command == 1) {
 			cin >> ID >> name;
 			valueList->INSERT(ID,name);
 		}
 
 		else if (command == 2) {
-			//cin >> num;
-			//valueList->FIND(num);
+			valueList->PRINT();
 		}
 
 		else if (command == 3) {
