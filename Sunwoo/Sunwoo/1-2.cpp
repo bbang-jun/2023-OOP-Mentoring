@@ -10,6 +10,20 @@ int main()
 {
 	srand(time(0));
 	int i, j;
+
+	int** matrix = new int* [10];
+	for (i = 0; i < 10; i++)
+		*(matrix + i) = new int[10];
+
+
+	cout << "Sort by row" << endl;
+
+
+
+
+
+
+	int i, j;
 	int** matrix;
 
 	matrix = (int**)malloc(sizeof(int*) * 10);
