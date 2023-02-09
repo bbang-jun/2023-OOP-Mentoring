@@ -2,15 +2,6 @@
 #include <iostream>
 #include <cstring>
 using namespace std;
-#include <Windows.h>
-
-#define _CRTDBG_MAP_ALLOC
-#include <cstdlib>
-#include <crtdbg.h>
-
-#ifdef _DEBUG
-#define new new ( _NORMAL_BLOCK , __FILE__ , __LINE__ )
-#endif
 
 class Student_info {
 private:
@@ -67,7 +58,7 @@ public: // 값을 입력받아서 private에 저장
 		
 		while (1) // 무한 반복
 		{
-			cout << "Please Enter Command(Insert, find, change, print, exit) : ";
+			cout << "Please Enter Command(insert, find, change, print, exit) : ";
 			cin >> input; // 커맨드를 입력받음
 			if (strcmp(input,"insert")==0) // insert인 경우
 			{	
@@ -109,7 +100,6 @@ public: // 값을 입력받아서 private에 저장
 				cin >> input; // 커맨드를 입력받음
 			}
 		}
-		delete Student;
-		_CrtDumpMemoryLeaks();
+			delete[] Student;
 		return 0;
 	}

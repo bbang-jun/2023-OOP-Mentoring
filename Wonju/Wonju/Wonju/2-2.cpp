@@ -2,15 +2,7 @@
 #include <iostream>
 #include <cstring>
 using namespace std;
-#include <Windows.h>
 
-#define _CRTDBG_MAP_ALLOC
-#include <cstdlib>
-#include <crtdbg.h>
-
-#ifdef _DEBUG
-#define new new ( _NORMAL_BLOCK , __FILE__ , __LINE__ )
-#endif
 
 class animal {
 private:
@@ -52,7 +44,6 @@ public:
 		}
 	};
 	~zoo() {
-		for(int i =0; i<size;i++)
 			delete[] animal_list;
 	}
 
@@ -97,6 +88,5 @@ int main(void)
 			break;
 	}
 	delete Wonju;
-	_CrtDumpMemoryLeaks();
 	return 0;
 }
