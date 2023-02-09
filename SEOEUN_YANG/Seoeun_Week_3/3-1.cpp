@@ -20,8 +20,8 @@ public:
 	void setname(char* name) { strcpy(this->name, name); }
 	char* getname() { return this->name; }
 
-	void setPrev(Node* prevNode) { this->prev = prevNode; }
-	Node* getPrev() { return this->prev; }
+	void setPrev(Node* prevNode) { this->prev = prevNode; }//이전 노드 포인터 저장
+	Node* getPrev() { return this->prev; }//노드 앞으로 이동
 	void setNext(Node* nextNode) { this->next = nextNode; }//다음 노드 포인터 저장
 	Node* getNext() { return this->next; }//다음 노드 포인터 불러옴 (노드 이동)
 };
@@ -55,7 +55,7 @@ public:
 };
 
 void List::INSERT(int ID, char* name) {
-	//Node* curNode = head;
+	Node* curNode = head;
 	Node* newNode = new Node;
 	newNode->setID(ID);
 	newNode->setname(name);//노드 데이터 저장
@@ -63,14 +63,39 @@ void List::INSERT(int ID, char* name) {
 	if (head == NULL) {//처음
 		tail = head = newNode;
 		this->size++;
+		return;
 	}
 
-	else {//연결
-		tail->setNext(newNode);//새 노드 tail로 연결
-		newNode->setPrev(tail);//역방향 연결
-		tail = tail->getNext();//tail 이동
-		this->size++;
+	else {//리스트 연결
+		while (curNode != NULL) {
+			if (curNode->getID() > ID) {
+				if (curNode == head) {//head 앞에 삽입해야 할 경우
+					newNode->setNext(curNode);//head 다음 삽입
+					curNode->setPrev(newNode);//역방향 연결
+					head = newNode;
+					this->size++;
+					return;//INSERT 끝
+				}
+				else {//리스트 중간 삽입 //curNode 앞에 newNode 삽입
+					//역방향 연결
+					curNode->getPrev()->setNext(newNode);//curNode의 prev, newNode의 next으로 연결
+					newNode->setPrev(curNode->getPrev());//newNode의 prev, curNode 전 노드의 next으로 연결
+					//순방향 연결
+					curNode->setPrev(newNode);
+					newNode->setNext(curNode);
+					this->size++;
+					return;
+				}
+			}
+			curNode = curNode->getNext();
+		}
 	}
+
+	//마지막 연결
+	tail->setNext(newNode);//새 노드 tail로 연결
+	newNode->setPrev(tail);//역방향 연결
+	tail = tail->getNext();//tail 이동
+	this->size++;
 }
 
 void List::PRINT() {
@@ -168,7 +193,8 @@ int main(void) {
 		}
 
 		else if (command == 6) {
-			valueList->PRINT();
+			cin >> ID;
+			valueList->DELETE(ID);
 		}
 
 		else if (command == 7)
@@ -177,5 +203,7 @@ int main(void) {
 		else
 			continue;
 	}
+
+	delete valueList;
 	return 0;
 }
