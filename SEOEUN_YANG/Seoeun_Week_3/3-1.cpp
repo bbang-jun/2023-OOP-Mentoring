@@ -4,15 +4,15 @@ using namespace std;
 
 class Node {//노드 클래스 생성
 private:
-	int ID;
-	string name;
+	int ID;//아이디
+	string name;//이름
 	Node* prev;//이전 노드 가리킴
 	Node* next;//다음 노드 가리킴
 public:
 	Node() {//생성자
 		ID = 0;//초기화
 		name = "";
-		this->next = NULL;//초기화
+		this->next = NULL;//포인터 초기화
 		this->prev = NULL;
 	}
 	void setID(int ID) { this->ID = ID; }//데이터 저장
@@ -48,16 +48,16 @@ public:
 		}
 	}
 
-	bool FIND(int ID);
-	void INSERT(int ID,string name);
-	void PRINT();
-	void PRINT_REV();
-	void SORT_NAME();
-	void SORT_ID();
-	void DELETE(int ID);
+	bool FIND(int ID);//중복 검색
+	void INSERT(int ID,string name);//저장
+	void PRINT();//출력
+	void PRINT_REV();//역출력
+	void SORT_NAME();//이름 오름차순 정렬
+	void SORT_ID();//아이디 오름차순 정리
+	void DELETE(int ID);//삭제
 };
 
-bool List::FIND(int ID) {
+bool List::FIND(int ID) {//중복 검색
 	Node* curNode = head;//처음부터 탐색
 	while (curNode != NULL) {//데이터값 있는 동안만
 		if (curNode->getID() == ID) {//찾는 값과 같을 때
@@ -70,12 +70,13 @@ bool List::FIND(int ID) {
 
 void List::INSERT(int ID, string name) {
 	Node* curNode = head;
-	Node* newNode = new Node;
+	Node* newNode = new Node;//새 노드 생성
 	newNode->setID(ID);
 	newNode->setname(name);//노드 데이터 저장
 
-	if (FIND(ID) == true)//중복 제거
-		return;
+	if (FIND(ID) == true) {//중복 제거
+		return;//중복이라면 INSERT 함수 종료
+	}
 
 	if (head == NULL) {//처음
 		tail = head = newNode;
@@ -84,27 +85,27 @@ void List::INSERT(int ID, string name) {
 	}
 
 	else {//리스트 연결
-		while (curNode != NULL) {
-			if (curNode->getID() > ID) {
+		while (curNode != NULL) {//저장할 위치 찾기
+			if (curNode->getID() > ID) {//위치 찾음
 				if (curNode == head) {//head 앞에 삽입해야 할 경우
-					newNode->setNext(curNode);//head 다음 삽입
+					newNode->setNext(curNode);//새 노드 순방향 연결
 					curNode->setPrev(newNode);//역방향 연결
-					head = newNode;
+					head = newNode;//head 재설정
 					this->size++;
 					return;//INSERT 끝
 				}
 				else {//리스트 중간 삽입 //curNode 앞에 newNode 삽입
-					//역방향 연결
-					curNode->getPrev()->setNext(newNode);//curNode의 prev, newNode의 next으로 연결
-					newNode->setPrev(curNode->getPrev());//newNode의 prev, curNode 전 노드의 next으로 연결
-					//순방향 연결
+					//curNode 전 노드와 newNode 연결
+					curNode->getPrev()->setNext(newNode);//curNode의 전노드의 next 포인터 new노드로 연결
+					newNode->setPrev(curNode->getPrev());//newNode의 prev, curNode 전 노드로 연결
+					//newNode와 curNode 연결
 					curNode->setPrev(newNode);
 					newNode->setNext(curNode);
 					this->size++;
 					return;
 				}
 			}
-			curNode = curNode->getNext();
+			curNode = curNode->getNext();//위치 탐색
 		}
 	}
 
@@ -129,30 +130,30 @@ void List::PRINT_REV() {
 
 	while (curNode != NULL) {
 		cout << curNode->getID() << " " << curNode->getname() << endl;
-		curNode = curNode->getPrev();
+		curNode = curNode->getPrev();//전 노드로 이동
 	}
 }
 
 void List::SORT_NAME() {
 	int temp_ID = 0;
 	string temp_name = "";
-	Node* Node_1 = head;
+	Node* Node_1 = new Node;
 	Node* Node_2 = tail;
 
 	while (head != Node_2) {//node 2개 이상
-		Node_1 = head;
-		while (Node_1 != Node_2) {
-			if (Node_1->getname() > Node_1->getNext()->getname()) {
-				temp_ID = Node_1->getID();
+		Node_1 = head;//초기화
+		while (Node_1 != Node_2) {//처음부터 좌아악 움직이면서 정렬
+			if (Node_1->getname() > Node_1->getNext()->getname()) {//이름 크기
+				temp_ID = Node_1->getID();//swap
 				temp_name = Node_1->getname();
 				Node_1->setID(Node_1->getNext()->getID());
 				Node_1->setname(Node_1->getNext()->getname());
 				Node_1->getNext()->setID(temp_ID);
 				Node_1->getNext()->setname(temp_name);
 			}
-			Node_1 = Node_1->getNext();
+			Node_1 = Node_1->getNext();//다음 노드로 이동
 		}
-		Node_2 = Node_2->getPrev();
+		Node_2 = Node_2->getPrev();//안의 while문 한 번 돌면 이름 제일 큰 게 맨 마지막에 저장됨 그래서 정렬 다시 안해도 됨
 	}
 
 	PRINT();
@@ -195,29 +196,24 @@ void List::DELETE(int ID) {
 	}
 
 	//while문 탈출 이후
-	if (curNode == head) { // 1. head를 삭제하는 경우
-		if (head->getNext() == NULL) { // list에 head만 존재하는 경우
+	if (curNode == head) {//head 삭제
+		if (head->getNext() == NULL) {//head만 존재
 			delNode = head;
-			delete head;
-			// head = NULL; 팁1
-
 			this->size--;//-> size=0
 		}
-		else { // list에 head 외에 다른 노드들도 존재하는 경우
+		else {//노드 2개 이상
 			delNode = head;
 			head = head->getNext();//head 다음 노드를 head로 설정
-			delete delNode;
 			this->size--;
 		}
 	}
-	else if (curNode == tail) { // 3. tail을 삭제하는 경우
+	else if (curNode == tail) {//tail 삭제
 		delNode = tail;
 		tail = prevNode;//tail 전 노드 tail로 설정
-		delete delNode;
 		tail->setNext(NULL); // 팁2 //쓰레기값 방지 (tail 항상 NULL 가리킴)
 		this->size--;
 	}
-	else { // 2. head와 tail을 제외한 다른 노드들을 제거하는 경우
+	else {//중간 삭제
 		delNode = curNode;
 		prevNode->setNext(curNode->getNext());//cur노드 전의 노드를 cur노드 이후의 노드를 가리키게 만듦
 		delete delNode;//cur노드 삭제
@@ -229,7 +225,7 @@ int main(void) {
 	int command;
 	int ID = 0;
 	string name;
-	List* valueList = new List;
+	List* valueList = new List;//동적할당
 	
 	while (1) {
 		cout << "Please Enter Command(1 : insert, 2 : print, 3 : print_reverse, 4 : sort_by_name, 5 : sort_by_ID, 6 : delete, 7 : exit) : ";
@@ -249,7 +245,7 @@ int main(void) {
 		}
 
 		else if (command == 4) {
-			valueList->SORT_NAME();//출력까지
+			valueList->SORT_NAME();
 		}
 
 		else if (command == 5) {
@@ -268,6 +264,6 @@ int main(void) {
 			continue;
 	}
 
-	delete valueList;
+	delete valueList;//동적할당 해제
 	return 0;
 }
