@@ -5,18 +5,17 @@ using namespace std;
 class Node {//노드 클래스 생성
 private:
 	int ID;
-	char name;
+	char name[100];
 	Node* next;  // 다음 노드를 가리키는 포인터
 public:
 	Node() {//생성자
 		ID = 0;//초기화
-		name = {};
 		this->next = NULL;//초기화
 	}
 	void setID(int ID) { this->ID = ID; }//데이터 저장
 	int getID() { return this->ID; }//데이터 불러옴
 	void setname(char* name) { strcpy(this->name, name); }
-	char getname() { return this->name; }
+	char* getname() { return this->name; }
 	void setNext(Node* nextNode) { this->next = nextNode; }//다음 노드 포인터 저장
 	Node* getNext() { return this->next; }//다음 노드 포인터 불러옴 (노드 이동)
 };
@@ -42,11 +41,30 @@ public:
 			delete delNode;//노드 삭제
 		}
 	}
-	void INSERT(int value);
+	void INSERT(int ID,char* name);
 	void FIND(int value);
 	void PRINT();
 	void DELETE(int value);
 };
+
+void List::INSERT(int ID, char* name) {
+	Node* curNode = head;
+	Node* newNode = new Node;
+	newNode->setID(ID);
+	newNode->setname(name);//노드 뎅이터 저장
+
+	if (head == NULL) {
+		tail = head = newNode;
+		this->size++;
+	}
+
+	else {
+		tail->setNext(newNode);
+		tail = tail->getNext();
+		this->size++;
+	}
+}
+
 
 
 int main(void) {
@@ -61,8 +79,7 @@ int main(void) {
 		cin >> command;
 		if (command == 1) {
 			cin >> ID >> name;
-			//valueList->INSERT(num);
-			//index++;
+			valueList->INSERT(ID,name);
 		}
 
 		else if (command == 2) {
