@@ -5,20 +5,20 @@ using namespace std;
 class Node {//노드 클래스 생성
 private:
 	int ID;
-	char name[100];
+	string name;
 	Node* prev;//이전 노드 가리킴
 	Node* next;//다음 노드 가리킴
 public:
 	Node() {//생성자
 		ID = 0;//초기화
-		strcpy(this->name, "");
+		name = "";
 		this->next = NULL;//초기화
 		this->prev = NULL;
 	}
 	void setID(int ID) { this->ID = ID; }//데이터 저장
 	int getID() { return this->ID; }//데이터 불러옴
-	void setname(char* name) { strcpy(this->name, name); }
-	char* getname() { return this->name; }
+	void setname(string name) { this->name=name; }
+	string getname() { return this->name; }
 
 	void setPrev(Node* prevNode) { this->prev = prevNode; }//이전 노드 포인터 저장
 	Node* getPrev() { return this->prev; }//노드 앞으로 이동
@@ -47,18 +47,35 @@ public:
 			delete delNode;//노드 삭제
 		}
 	}
-	void INSERT(int ID,char* name);
+
+	bool FIND(int ID);
+	void INSERT(int ID,string name);
 	void PRINT();
 	void PRINT_REV();
-	void FIND(int value);
-	void DELETE(int value);
+	void SORT_NAME();
+	//void SORT_ID();
+	void DELETE(int ID);
 };
 
-void List::INSERT(int ID, char* name) {
+bool List::FIND(int ID) {
+	Node* curNode = head;//처음부터 탐색
+	while (curNode != NULL) {//데이터값 있는 동안만
+		if (curNode->getID() == ID) {//찾는 값과 같을 때
+			return true;
+		}
+		curNode = curNode->getNext();//찾는 값 아니면 다음 노드로 이동
+	}
+	return false;
+}
+
+void List::INSERT(int ID, string name) {
 	Node* curNode = head;
 	Node* newNode = new Node;
 	newNode->setID(ID);
 	newNode->setname(name);//노드 데이터 저장
+
+	if (FIND(ID) == true)//중복 제거
+		return;
 
 	if (head == NULL) {//처음
 		tail = head = newNode;
@@ -116,6 +133,37 @@ void List::PRINT_REV() {
 	}
 }
 
+void List::SORT_NAME() {
+	int temp_ID = 0;
+	string temp_name = "";
+	Node* Node_1 = head;
+	Node* Node_2 = head->getNext();
+
+	for (int i = 0; i < this->size; i++) {
+		for (int j = 0; j < (this->size) - 1; j++) {
+			if (Node_1->getname() > Node_2->getname()) {
+				temp_ID = Node_1->getID();
+				temp_name = Node_1->getname();
+				Node_1->setID(Node_2->getID());
+				Node_1->setname(Node_2->getname());
+				Node_2->setID(temp_ID);
+				Node_2->setname(temp_name);
+			}
+			Node_1->getNext();
+			Node_2->getNext();
+		}
+
+		Node_1 = head;
+		Node_2 = head->getNext();
+		for (int z = 0; z < i + 1; z++) {
+			Node_1->getNext();
+			Node_2->getNext();
+		}
+	}
+	PRINT();
+}
+
+
 void List::DELETE(int ID) {
 	Node* curNode = head;
 	//변수 느낌
@@ -163,8 +211,7 @@ void List::DELETE(int ID) {
 int main(void) {
 	int command;
 	int ID = 0;
-	char name[100];
-
+	string name;
 	List* valueList = new List;
 	
 	while (1) {
@@ -185,11 +232,11 @@ int main(void) {
 		}
 
 		else if (command == 4) {
-			valueList->PRINT();
+			valueList->SORT_NAME();//출력까지
 		}
 
 		else if (command == 5) {
-			valueList->PRINT();
+			//valueList->SORT_ID();
 		}
 
 		else if (command == 6) {
