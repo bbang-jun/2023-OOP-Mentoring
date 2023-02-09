@@ -49,6 +49,7 @@ public:
 	void PRINT_REVERSE();
 	void SORT_NAME();
 	void SORT_ID();
+	void DELETE(int input);
 };
 
 void List::INSERT(int input, string name)
@@ -171,6 +172,49 @@ void List::SORT_ID()
 	}
 }
 
+void List::DELETE(int input)
+{
+	Node* curNode = head;
+
+	while (curNode != NULL)
+	{
+		if (curNode->getID() == input)
+			break;
+		curNode = curNode->getNext();
+	}
+
+	if (curNode == head) // 삭제하는게 첫번째 노드일 경우
+	{
+		if (curNode->getNext() == NULL) // 노드가 하나밖에 없는 경우
+		{
+			delete head; // 메모리 먼저 삭제
+			head = NULL; // 서순 주의
+		}
+		else // 노드가 여러개일 경우
+		{
+			head = curNode->getNext();
+			delete curNode;
+			curNode = NULL;
+		}
+		this->size--;
+	}
+	else if (curNode == tail) // 삭제하는 게 마지막 노드일 경우
+	{
+		tail = curNode->getPrev();
+		delete curNode;
+		curNode = NULL;
+		this->size--;
+	}
+	else // 중간 삽입
+	{
+		curNode->getPrev()->setNext(curNode->getNext());
+		curNode->getNext()->setPrev(curNode->getPrev());
+		delete curNode;
+		curNode = NULL;
+		this->size--;
+	}
+}
+
 int main()
 {
 	int command = 0, input;
@@ -201,6 +245,15 @@ int main()
 		else if (command == 5)
 		{
 			Linked_List->SORT_ID();
+		}
+		else if (command == 6)
+		{
+			cin >> input;
+			Linked_List->DELETE(input);
+		}
+		else if (command == 7)
+		{
+			return 0;
 		}
 	}
 }
