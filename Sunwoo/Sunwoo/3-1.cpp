@@ -3,6 +3,16 @@
 #include <cstring>
 using namespace std;
 
+#include <Windows.h>
+
+#define _CRTDBG_MAP_ALLOC
+#include <cstdlib>
+#include <crtdbg.h>
+
+#ifdef _DEBUG
+#define new new ( _NORMAL_BLOCK , __FILE__ , __LINE__ )
+#endif
+
 class Node
 {
 private:
@@ -42,19 +52,44 @@ public:
 	}
 	~List()
 	{
-
+		Node* curNode = head;
+		Node* delNode = NULL;
+		while (curNode != NULL)
+		{
+			delNode = curNode;
+			curNode = curNode->getNext();
+			delete delNode;
+		}
+		delNode = NULL;
 	}
+	Node* FIND(int input);
 	void INSERT(int input, string name);
 	void PRINT();
 	void PRINT_REVERSE();
 	void SORT_NAME();
 	void SORT_ID();
-	void DELETE(int input);
+	void DEL(int input);
 };
+
+Node* List::FIND(int input)
+{
+	Node* curNode = head;
+
+	while (curNode != NULL)
+	{
+		if (curNode->getID() == input)
+			return curNode;
+		curNode = curNode->getNext();
+	}
+}
 
 void List::INSERT(int input, string name)
 {
 	Node* curNode = head;
+
+	if (FIND(input)!=NULL)
+		return;
+
 	Node* newNode = new Node;
 	newNode->setValue(input, name);
 
@@ -67,9 +102,7 @@ void List::INSERT(int input, string name)
 	{
 		while (curNode != NULL)
 		{
-			if (curNode->getID() == input)
-				return;
-			else if (curNode->getID() > input)
+			if (curNode->getID() > input)
 			{
 				if (curNode == head)
 				{
@@ -172,17 +205,10 @@ void List::SORT_ID()
 	}
 }
 
-void List::DELETE(int input)
+void List::DEL(int input)
 {
-	Node* curNode = head;
-
-	while (curNode != NULL)
-	{
-		if (curNode->getID() == input)
-			break;
-		curNode = curNode->getNext();
-	}
-
+	Node* curNode = FIND(input);
+		
 	if (curNode == head) // 삭제하는게 첫번째 노드일 경우
 	{
 		if (curNode->getNext() == NULL) // 노드가 하나밖에 없는 경우
@@ -249,11 +275,16 @@ int main()
 		else if (command == 6)
 		{
 			cin >> input;
-			Linked_List->DELETE(input);
+			Linked_List->DEL(input);
 		}
 		else if (command == 7)
 		{
-			return 0;
+			break;
 		}
 	}
+
+	delete Linked_List;
+
+	_CrtDumpMemoryLeaks();
+	return 0;
 }
