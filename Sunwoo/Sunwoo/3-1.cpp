@@ -7,20 +7,20 @@ class Node
 {
 private:
 	int ID;
-	char name[100];
+	string name;
 	Node* prev;
 	Node* next;
 public:
 	Node()
 	{
 		this->ID = 0;
-		strcpy(this->name, "");
+		this->name = "";
 		this->prev = NULL;
 		this->next = NULL;
 	}
-	void setValue(int input, char* name) { this->ID = input; strcpy(this->name, name); }
+	void setValue(int input, string name) { this->ID = input; this->name = name; }
 	int getID() { return this->ID; }
-	char* getName() { return this->name; }
+	string getName() { return this->name; }
 	void setPrev(Node* prevNode) { this->prev = prevNode; }
 	void setNext(Node* nextNode) { this->next = nextNode; }
 	Node* getPrev() { return this->prev; }
@@ -44,12 +44,13 @@ public:
 	{
 
 	}
-	void INSERT(int input, char* name);
+	void INSERT(int input, string name);
 	void PRINT();
 	void PRINT_REVERSE();
+	void SORT_NAME();
 };
 
-void List::INSERT(int input, char* name)
+void List::INSERT(int input, string name)
 {
 	Node* curNode = head;
 	Node* newNode = new Node;
@@ -118,10 +119,36 @@ void List::PRINT_REVERSE()
 	}
 }
 
+void List::SORT_NAME()
+{
+	int step, i, temp_ID;
+	string temp_name;
+	Node* curNode1 = head;
+	Node* curNode2 = curNode1->getNext();
+
+	while (curNode1 != NULL)
+	{
+		while (curNode2 != NULL)
+		{
+			if (curNode2->getPrev()->getName() > curNode2->getName())
+			{
+				temp_name = curNode2->getName();
+				temp_ID = curNode2->getID();
+				curNode2->setValue(curNode2->getPrev()->getID(), curNode2->getPrev()->getName());
+				curNode2->getPrev()->setValue(temp_ID, temp_name);
+			}
+			curNode2 = curNode2->getNext();
+		}
+		curNode1= curNode1->getNext();
+	}
+	cout << "a";
+
+}
+
 int main()
 {
 	int command = 0, input;
-	char name[100];
+	string name;
 	List* Linked_List = new List;
 
 	while (command != 7)
@@ -140,6 +167,10 @@ int main()
 		else if (command == 3)
 		{
 			Linked_List->PRINT_REVERSE();
+		}
+		else if (command == 4)
+		{
+			Linked_List->SORT_NAME();
 		}
 	}
 }
