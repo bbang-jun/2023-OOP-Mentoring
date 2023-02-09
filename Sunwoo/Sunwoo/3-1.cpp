@@ -8,18 +8,22 @@ class Node
 private:
 	int ID;
 	char name[100];
+	Node* prev;
 	Node* next;
 public:
 	Node()
 	{
 		this->ID = 0;
 		strcpy(this->name, "");
+		this->prev = NULL;
 		this->next = NULL;
 	}
 	void setValue(int input, char* name) { this->ID = input; strcpy(this->name, name); }
 	int getID() { return this->ID; }
 	char* getName() { return this->name; }
+	void setPrev(Node* prevNode) { this->prev = prevNode; }
 	void setNext(Node* nextNode) { this->next = nextNode; }
+	Node* getPrev() { return this->prev; }
 	Node* getNext() { return this->next; }
 };
 
@@ -58,7 +62,35 @@ void List::INSERT(int input, char* name)
 	}
 	else
 	{
+		while (curNode != NULL)
+		{
+			if (curNode->getID() == input)
+				return;
+			else if (curNode->getID() > input)
+			{
+				if (curNode == head)
+				{
+					newNode->setNext(curNode);
+					curNode->setPrev(newNode);
+					head = newNode;
+					this->size++;
+					return;
+				}
+				else
+				{
+					curNode->getPrev()->setNext(newNode);
+					newNode->setPrev(curNode->getPrev());
+					newNode->setNext(curNode);
+					curNode->setPrev(newNode);
+					this->size++;
+					return;
+				}
+			}
+			curNode = curNode->getNext();
+		}
+
 		tail->setNext(newNode);
+		newNode->setPrev(tail);
 		tail = tail->getNext();
 		this->size++;
 	}
@@ -70,7 +102,7 @@ void List::PRINT()
 
 	while (curNode != NULL)
 	{
-		cout << curNode->getID() << "" << curNode->getName() << endl;
+		cout << curNode->getID() << " " << curNode->getName() << endl;
 		curNode = curNode->getNext();
 	}
 }
