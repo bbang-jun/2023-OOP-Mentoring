@@ -13,11 +13,15 @@ public:
 		ID = 0;//초기화
 		strcpy(this->name, "");
 		this->next = NULL;//초기화
+		this->prev = NULL;
 	}
 	void setID(int ID) { this->ID = ID; }//데이터 저장
 	int getID() { return this->ID; }//데이터 불러옴
 	void setname(char* name) { strcpy(this->name, name); }
 	char* getname() { return this->name; }
+
+	void setPrev(Node* prevNode) { this->prev = prevNode; }
+	Node* getPrev() { return this->prev; }
 	void setNext(Node* nextNode) { this->next = nextNode; }//다음 노드 포인터 저장
 	Node* getNext() { return this->next; }//다음 노드 포인터 불러옴 (노드 이동)
 };
@@ -51,19 +55,20 @@ public:
 };
 
 void List::INSERT(int ID, char* name) {
-	Node* curNode = head;
+	//Node* curNode = head;
 	Node* newNode = new Node;
 	newNode->setID(ID);
 	newNode->setname(name);//노드 데이터 저장
 
-	if (head == NULL) {
+	if (head == NULL) {//처음
 		tail = head = newNode;
 		this->size++;
 	}
 
-	else {
-		tail->setNext(newNode);
-		tail = tail->getNext();
+	else {//연결
+		tail->setNext(newNode);//새 노드 tail로 연결
+		newNode->setPrev(tail);//역방향 연결
+		tail = tail->getNext();//tail 이동
 		this->size++;
 	}
 }
@@ -74,6 +79,15 @@ void List::PRINT() {
 	while (curNode != NULL) {
 		cout << curNode->getID() << " " << curNode->getname() << endl;
 		curNode = curNode->getNext();
+	}
+}
+
+void List::PRINT_REV() {
+	Node* curNode = tail;//마지막 노드부터 차례로 출력
+
+	while (curNode != NULL) {
+		cout << curNode->getID() << " " << curNode->getname() << endl;
+		curNode = curNode->getPrev();
 	}
 }
 
