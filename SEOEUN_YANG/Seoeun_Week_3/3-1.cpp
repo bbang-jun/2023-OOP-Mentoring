@@ -53,7 +53,7 @@ public:
 	void PRINT();
 	void PRINT_REV();
 	void SORT_NAME();
-	//void SORT_ID();
+	void SORT_ID();
 	void DELETE(int ID);
 };
 
@@ -137,32 +137,49 @@ void List::SORT_NAME() {
 	int temp_ID = 0;
 	string temp_name = "";
 	Node* Node_1 = head;
-	Node* Node_2 = head->getNext();
+	Node* Node_2 = tail;
 
-	for (int i = 0; i < this->size; i++) {
-		for (int j = 0; j < (this->size) - 1; j++) {
-			if (Node_1->getname() > Node_2->getname()) {
+	while (head != Node_2) {//node 2개 이상
+		Node_1 = head;
+		while (Node_1 != Node_2) {
+			if (Node_1->getname() > Node_1->getNext()->getname()) {
 				temp_ID = Node_1->getID();
 				temp_name = Node_1->getname();
-				Node_1->setID(Node_2->getID());
-				Node_1->setname(Node_2->getname());
-				Node_2->setID(temp_ID);
-				Node_2->setname(temp_name);
+				Node_1->setID(Node_1->getNext()->getID());
+				Node_1->setname(Node_1->getNext()->getname());
+				Node_1->getNext()->setID(temp_ID);
+				Node_1->getNext()->setname(temp_name);
 			}
-			Node_1->getNext();
-			Node_2->getNext();
+			Node_1 = Node_1->getNext();
 		}
-
-		Node_1 = head;
-		Node_2 = head->getNext();
-		for (int z = 0; z < i + 1; z++) {
-			Node_1->getNext();
-			Node_2->getNext();
-		}
+		Node_2 = Node_2->getPrev();
 	}
+
 	PRINT();
 }
 
+void List::SORT_ID() {
+	int temp_ID = 0;
+	string temp_name = "";
+	Node* Node_1 = head;
+	Node* Node_2 = tail;
+
+	while (head != Node_2) {//node 2개 이상
+		Node_1 = head;
+		while (Node_1 != Node_2) {
+			if (Node_1->getID() > Node_1->getNext()->getID()) {
+				temp_ID = Node_1->getID();
+				temp_name = Node_1->getname();
+				Node_1->setID(Node_1->getNext()->getID());
+				Node_1->setname(Node_1->getNext()->getname());
+				Node_1->getNext()->setID(temp_ID);
+				Node_1->getNext()->setname(temp_name);
+			}
+			Node_1 = Node_1->getNext();
+		}
+		Node_2 = Node_2->getPrev();
+	}
+}
 
 void List::DELETE(int ID) {
 	Node* curNode = head;
@@ -236,7 +253,7 @@ int main(void) {
 		}
 
 		else if (command == 5) {
-			//valueList->SORT_ID();
+			valueList->SORT_ID();
 		}
 
 		else if (command == 6) {
