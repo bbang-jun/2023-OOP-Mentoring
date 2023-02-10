@@ -199,11 +199,14 @@ void List::DELETE(int ID) {
 	if (curNode == head) {//head 삭제
 		if (head->getNext() == NULL) {//head만 존재
 			delNode = head;
+			delete delNode;//수정
 			this->size--;//-> size=0
+			head=NULL;
 		}
 		else {//노드 2개 이상
 			delNode = head;
 			head = head->getNext();//head 다음 노드를 head로 설정
+			delete delNode;//수정
 			this->size--;
 		}
 	}
