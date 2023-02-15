@@ -44,7 +44,7 @@ public:
 	Node* getRoot() { return root; }
 	void INSERT(Node* curNode, int data);
 	void DELETE(int data);
-	void FIND(int data);
+	void FIND(Node* curNode, int data);
 	void PRINT_PRE(Node* curNode);
 	void PRINT_IN(Node* curNode);
 	void PRINT_POST(Node* curNode);
@@ -147,7 +147,7 @@ void Tree::DELETE(int data) {
 					return;
 				}
 				else if (curNode->getRightChild() != NULL) {//curNode에게 오른쪽 자식만 있을 때
-					parent->setRightChild(curNode->getRightChild()); // parent의 새로운 right child를 curNode의 right child로 설정
+					parent->setRightChild(curNode->getRightChild());//parent의 새로운 right child를 curNode의 right child로 설정
 					delete delNode;
 					delNode = NULL;
 					return;
@@ -161,7 +161,7 @@ void Tree::DELETE(int data) {
 					return;
 				}
 				else if (curNode->getRightChild() != NULL) {//curNode에게 오른쪽 자식만 있을 때
-					parent->setRightChild(curNode->getRightChild()); // parent의 새로운 right child를 curNode의 right child로 설정
+					parent->setRightChild(curNode->getRightChild());//parent의 새로운 right child를 curNode의 right child로 설정
 					delete delNode;
 					delNode = NULL;
 					return;
@@ -175,22 +175,22 @@ void Tree::DELETE(int data) {
 		Node* rightSmall = curNode->getRightChild();
 		Node* rightSmallParent = rightSmall;
 
-		if (rightSmall->getLeftChild() == NULL) { // rightSmall의 left child가 없는 경우
-			curNode->setData(rightSmall->getData()); // curNode의 data를 rightSmall로 변경 후 rightSmall 삭제
+		if (rightSmall->getLeftChild() == NULL) {//rightSmall의 left child가 없는 경우
+			curNode->setData(rightSmall->getData());//curNode의 data를 rightSmall로 변경 후 rightSmall 삭제
 			curNode->setRightChild(NULL);
 			delete rightSmall;
 			rightSmall = NULL;
 
 			return;
 		}
-		else { // rightSmall의 left child가 있는 경우
+		else {//rightSmall의 left child가 있는 경우
 			while (rightSmall->getLeftChild() != NULL) { // 우측 sub tree의 가장 작은 data를 가진 node로 이동
 				rightSmallParent = rightSmall;
 				rightSmall = rightSmall->getLeftChild();
 			}
 			//curNode의 오른쪽 tree에서 가장 작은값이 rightSmall, 그에 맞는 rightSmallParent 설정
 
-			curNode->setData(rightSmall->getData()); // 삭제할 노드의 data를 우측 sub tree의 가장 작은 data로 바꿈
+			curNode->setData(rightSmall->getData());//삭제할 노드의 data를 우측 sub tree의 가장 작은 data로 바꿈
 			rightSmallParent->setLeftChild(NULL);
 			delete rightSmall; // 우측 sub tree의 가장 작은 node 삭제
 			rightSmall = NULL;
@@ -200,11 +200,25 @@ void Tree::DELETE(int data) {
 	}
 }
 
+void Tree::FIND(Node* curNode,int data) {
+	if (curNode == nullptr)
+		return;
 
-
-
-
-
+	cout << curNode->getData();
+	if (curNode->getLeftChild() != NULL || curNode->getRightChild() != NULL) {
+		cout << " -> ";
+		if (curNode->getData() > data) {//1
+			FIND(curNode->getLeftChild(), data);
+		}
+		else if (curNode->getData() < data) {
+			FIND(curNode->getRightChild(), data);
+		}
+		else {
+			cout << endl;
+			return;
+		}
+	}
+}
 
 void Tree::PRINT_PRE(Node* curNode) { // 전위순회
 	if (curNode == nullptr)
@@ -266,7 +280,8 @@ int main(void) {
 		}
 
 		else if (command == 3) {//find
-
+			cin >> data;
+			tree->FIND(tree->getRoot(), data);
 		}
 
 		else if (command == 4)
