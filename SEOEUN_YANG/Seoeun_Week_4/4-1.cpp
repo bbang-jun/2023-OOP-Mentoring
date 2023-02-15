@@ -43,8 +43,8 @@ public:
 	
 	Node* getRoot() { return root; }
 	void INSERT(Node* curNode, int data);
-	//void DELETE(int data);
-	//void FIND(int data);
+	void DELETE(int data);
+	void FIND(int data);
 	void PRINT_PRE(Node* curNode);
 	void PRINT_IN(Node* curNode);
 	void PRINT_POST(Node* curNode);
@@ -87,6 +87,124 @@ void Tree::INSERT(Node* curNode, int data) {//삽입
 		}
 	}
 }
+
+void Tree::DELETE(int data) {
+	Node* curNode = root;
+	Node* delNode = NULL;
+	Node* tempNode = NULL;
+
+	while (1) {
+		if (curNode->getData() < data) {//오른쪽
+			parent = curNode;
+			curNode = curNode->getRightChild();
+		}
+		else if (curNode->getData() > data) {//왼쪽
+			parent = curNode;
+			curNode = curNode->getLeftChild();
+		}
+		else//데이터값 동일 (노드 탐색 끝)
+			break;//데이터값 같은 노드 curNode에 저장해서 while문 빠져나감
+	}
+
+	//child가 0개인 node가 삭제될 경우(leaf node가 삭제될 경우)
+	if (curNode->getLeftChild() == NULL && curNode->getRightChild() == NULL) {
+		if (curNode == root) {//child가 0개인 node가 root인 경우
+			delete root;
+			root = NULL;
+			return;
+		}
+		else {//찐 leaf 노드
+			delete curNode;
+			curNode = NULL;
+			return;
+		}
+	}
+
+	//child가 1개인 node가 삭제될 경우
+	else if (curNode->getLeftChild() == NULL || curNode->getRightChild() == NULL) {//child 2개는 여기서 돌아가지 않음 (0개는 이미 앞의 if에서 다 돌아감)
+		if (curNode == root) {//child가 1개인 node가 root인 경우
+			if (root->getLeftChild() != NULL) { // root의 left child만 존재하는 경우
+				tempNode = root->getLeftChild();
+				delete root;
+				root = tempNode;
+				return;
+			}
+			else if (root->getRightChild() != NULL) { // root의 right child만 존재하는 경우
+				tempNode = root->getRightChild();
+				delete root;
+				root = tempNode;
+				return;
+			}
+		}
+		else {//child가 1개인 node가 root가 아닌 경우
+			delNode = curNode;
+
+			if (parent->getLeftChild() == curNode) {//curNode가 왼쪽 자식일 때
+				if (curNode->getLeftChild() != NULL) {//curNode에게 왼쪽 자식만 있을 때
+					parent->setLeftChild(curNode->getLeftChild());//parent의 새로운 left child를 curNode의 left child로 설정
+					delete delNode;
+					delNode = NULL;
+					return;
+				}
+				else if (curNode->getRightChild() != NULL) {//curNode에게 오른쪽 자식만 있을 때
+					parent->setRightChild(curNode->getRightChild()); // parent의 새로운 right child를 curNode의 right child로 설정
+					delete delNode;
+					delNode = NULL;
+					return;
+				}
+			}
+			else if (parent->getRightChild() == curNode) {//curNode가 오른쪽 자식일 때
+				if (curNode->getLeftChild() != NULL) {//curNode에게 왼쪽 자식만 있을 때
+					parent->setLeftChild(curNode->getLeftChild()); // parent의 새로운 left child를 curNode의 left child로 설정
+					delete delNode;
+					delNode = NULL;
+					return;
+				}
+				else if (curNode->getRightChild() != NULL) {//curNode에게 오른쪽 자식만 있을 때
+					parent->setRightChild(curNode->getRightChild()); // parent의 새로운 right child를 curNode의 right child로 설정
+					delete delNode;
+					delNode = NULL;
+					return;
+				}
+			}
+		}
+	}
+
+	//child가 2개인 node가 삭제될 경우
+	else if (curNode->getLeftChild() != NULL && curNode->getRightChild() != NULL) {
+		Node* rightSmall = curNode->getRightChild();
+		Node* rightSmallParent = rightSmall;
+
+		if (rightSmall->getLeftChild() == NULL) { // rightSmall의 left child가 없는 경우
+			curNode->setData(rightSmall->getData()); // curNode의 data를 rightSmall로 변경 후 rightSmall 삭제
+			curNode->setRightChild(NULL);
+			delete rightSmall;
+			rightSmall = NULL;
+
+			return;
+		}
+		else { // rightSmall의 left child가 있는 경우
+			while (rightSmall->getLeftChild() != NULL) { // 우측 sub tree의 가장 작은 data를 가진 node로 이동
+				rightSmallParent = rightSmall;
+				rightSmall = rightSmall->getLeftChild();
+			}
+			//curNode의 오른쪽 tree에서 가장 작은값이 rightSmall, 그에 맞는 rightSmallParent 설정
+
+			curNode->setData(rightSmall->getData()); // 삭제할 노드의 data를 우측 sub tree의 가장 작은 data로 바꿈
+			rightSmallParent->setLeftChild(NULL);
+			delete rightSmall; // 우측 sub tree의 가장 작은 node 삭제
+			rightSmall = NULL;
+
+			return;
+		}
+	}
+}
+
+
+
+
+
+
 
 void Tree::PRINT_PRE(Node* curNode) { // 전위순회
 	if (curNode == nullptr)
@@ -142,29 +260,32 @@ int main(void) {
 			tree->INSERT(tree->getRoot(), data);
 		}
 
-		if (command == 2) {
-			//
+		else if (command == 2) {//delete
+			cin >> data;
+			tree->DELETE(data);
 		}
 
-		if (command == 3) {
-			//
+		else if (command == 3) {//find
+
 		}
 
-		if (command == 4)
+		else if (command == 4)
 			tree->PRINT_PRE(tree->getRoot());
 
-		if (command == 5)
+		else if (command == 5)
 			tree->PRINT_IN(tree->getRoot());
 
-		if (command == 6)
+		else if (command == 6)
 			tree->PRINT_POST(tree->getRoot());
 
-		if (command == 7) {
-			//
-		}
+		else if (command == 7)
+			tree->PRINT_LEAF(tree->getRoot());
 
-		if (command == 8)
+		else if (command == 8)
 			break;
+
+		else
+			continue;
 	}
 
 	delete tree;
