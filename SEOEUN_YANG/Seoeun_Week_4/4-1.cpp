@@ -278,6 +278,7 @@ int main(void) {
 
 		else if (command == 3) {//find
 			cin >> data;
+			cout << "Path : ";
 			tree->FIND(tree->getRoot(), data);
 			cout << endl;
 		}
