@@ -137,7 +137,7 @@ void List::PRINT_REV() {
 void List::SORT_NAME() {
 	int temp_ID = 0;
 	string temp_name = "";
-	Node* Node_1 = new Node;
+	Node* Node_1 = head;
 	Node* Node_2 = tail;
 
 	while (head != Node_2) {//node 2개 이상
@@ -213,6 +213,7 @@ void List::DELETE(int ID) {
 	else if (curNode == tail) {//tail 삭제
 		delNode = tail;
 		tail = prevNode;//tail 전 노드 tail로 설정
+		delete delNode;
 		tail->setNext(NULL); // 팁2 //쓰레기값 방지 (tail 항상 NULL 가리킴)
 		this->size--;
 	}
