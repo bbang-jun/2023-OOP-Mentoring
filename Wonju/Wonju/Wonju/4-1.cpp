@@ -94,6 +94,9 @@ void Tree::INSERT(Node* curNode, int integer) { // 루트 노드가 없는 경우
 		}
 	}
 }
+void FIND(Node* curNode, int integer){
+	
+}
 void Tree::PrintPreorder(Node* curNode) { // 전위순회 출좌우
 	if (curNode == nullptr)
 		return;
@@ -117,6 +120,14 @@ void Tree::PrintPostorder(Node* curNode) { // 후위순회 좌우출
 	PrintPostorder(curNode->getRightChild());
 	cout << curNode->getValue() << " ";
 }
+void Tree::PrintLeafnode(Node* curNode) { //중위순회에서 리프노드일 때만 출력
+	if (curNode == nullptr)
+		return;
+	PrintLeafnode(curNode->getLeftChild());
+	if(curNode->getLeftChild()==NULL&&curNode->getRightChild()==NULL)
+		cout << curNode->getValue() << " ";
+	PrintLeafnode(curNode->getRightChild());
+}
 
 int main(void) {
 	Tree* tree = new Tree;
@@ -138,7 +149,8 @@ int main(void) {
 		}
 		else if (Command == 3)
 		{
-
+			cin >> integer;
+			tree->FIND(tree->getRoot(), integer);
 		}
 		else if (Command == 4)
 		{
@@ -157,7 +169,8 @@ int main(void) {
 		}
 		else if (Command == 7)
 		{
-
+			tree->PrintLeafnode(tree->getRoot());
+			cout << endl;
 		}
 		else if (Command == 8)
 		{
