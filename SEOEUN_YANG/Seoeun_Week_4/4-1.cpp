@@ -146,7 +146,7 @@ void Tree::DELETE(int data) {
 					return;
 				}
 				else if (curNode->getRightChild() != NULL) {//curNode에게 오른쪽 자식만 있을 때
-					parent->setRightChild(curNode->getRightChild());//parent의 새로운 right child를 curNode의 right child로 설정
+					parent->setLeftChild(curNode->getRightChild());//parent의 새로운 right child를 curNode의 right child로 설정
 					delete delNode;
 					delNode = NULL;
 					return;
@@ -154,7 +154,7 @@ void Tree::DELETE(int data) {
 			}
 			else if (parent->getRightChild() == curNode) {//curNode가 오른쪽 자식일 때
 				if (curNode->getLeftChild() != NULL) {//curNode에게 왼쪽 자식만 있을 때
-					parent->setLeftChild(curNode->getLeftChild()); // parent의 새로운 left child를 curNode의 left child로 설정
+					parent->setRightChild(curNode->getLeftChild()); // parent의 새로운 left child를 curNode의 left child로 설정
 					delete delNode;
 					delNode = NULL;
 					return;
@@ -207,11 +207,14 @@ void Tree::FIND(Node* curNode,int data) {
 
 	cout << curNode->getData();//먼저 출력
 	if (curNode->getLeftChild() != NULL || curNode->getRightChild() != NULL) {//leaf node 아니라면
-		cout << " -> ";
-		if (curNode->getData() > data) {//왼쪽
+		if (curNode->getData() == data)
+			return;
+		else if (curNode->getData() > data) {//왼쪽
+			cout << " -> ";
 			FIND(curNode->getLeftChild(), data);
 		}
 		else if (curNode->getData() < data) {//오른쪽
+			cout << " -> ";
 			FIND(curNode->getRightChild(), data);
 		}
 	}
