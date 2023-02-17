@@ -51,6 +51,7 @@ public:
     Node* getRoot() { return root; }
     void INSERT(Node* curNode, int integer);
     void DELETE(int integer);
+    void FIND(Node* curNode, int integer);
     void PRINT_PREORDER(Node* curNode);
     void PRINT_INORDER(Node* curNode);
     void PRINT_POSTORDER(Node* curNode);
@@ -210,7 +211,30 @@ void Tree::DELETE(int integer)
 
         if (rightSmall->getLeftChild() == NULL)
         {
+            
+        }
+    }
+}
 
+void Tree::FIND(Node* curNode, int integer)
+{
+    if (curNode == nullptr)
+        return;
+
+    cout << curNode->getValue();
+    if (curNode->getLeftChild() != NULL || curNode->getRightChild() != NULL) // curNode가 reaf 노드면
+    {
+        if (curNode->getValue() == integer)
+            return;
+        else if (curNode->getValue() > integer)
+        {
+            cout << "->";
+            FIND(curNode->getLeftChild(), integer);
+        }
+        else if (curNode->getValue() < integer)
+        {
+            cout << "->";
+            FIND(curNode->getRightChild(), integer);
         }
     }
 }
@@ -246,10 +270,10 @@ void Tree::PRINT_LEAF(Node* curNode)
 {
     if (curNode == nullptr)
         return;
-    PRINT_INORDER(curNode->getLeftChild());
+    PRINT_LEAF(curNode->getLeftChild());
     if (curNode->getLeftChild() == NULL && curNode->getRightChild() == NULL)
         cout << curNode->getValue() << " ";
-    PRINT_INORDER(curNode->getRightChild());
+    PRINT_LEAF(curNode->getRightChild());
 }
 
 
@@ -271,6 +295,11 @@ int main()
         {
             cin >> input;
             tree->DELETE(input);
+        }
+        else if (command == 3)
+        {
+            cin >> input;
+            tree->FIND(tree->getRoot(), input);
         }
         else if (command == 4)
         {
