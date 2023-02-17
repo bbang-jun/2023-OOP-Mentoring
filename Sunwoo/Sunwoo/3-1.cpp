@@ -3,7 +3,7 @@
 #include <cstring>
 using namespace std;
 
-// Node Å¬·¡½º ¼±¾ğ
+// Node í´ë˜ìŠ¤ ì„ ì–¸
 class Node
 {
 private:
@@ -12,23 +12,23 @@ private:
 	Node* prev;
 	Node* next;
 public:
-	Node() // Node ÃÊ±âÈ­
+	Node() // Node ì´ˆê¸°í™”
 	{
 		this->ID = 0;
 		this->name = "";
 		this->prev = NULL;
 		this->next = NULL;
 	}
-	void setValue(int input, string name) { this->ID = input; this->name = name; } // ID¿Í ÀÌ¸§ ÀúÀå
+	void setValue(int input, string name) { this->ID = input; this->name = name; } // IDì™€ ì´ë¦„ ì €ì¥
 	int getID() { return this->ID; } // ID getter
-	string getName() { return this->name; } // ÀÌ¸§ getter
-	void setPrev(Node* prevNode) { this->prev = prevNode; } // ÀÌÀü ³ëµå·Î ¼³Á¤
-	void setNext(Node* nextNode) { this->next = nextNode; } // ´ÙÀ½ ³ëµå·Î ¼³Á¤
-	Node* getPrev() { return this->prev; } // ÀÌÀü ³ëµå °¡Á®¿À±â
-	Node* getNext() { return this->next; } // ´ÙÀ½ ³ëµå °¡Á®¿À±â
+	string getName() { return this->name; } // ì´ë¦„ getter
+	void setPrev(Node* prevNode) { this->prev = prevNode; } // ì´ì „ ë…¸ë“œë¡œ ì„¤ì •
+	void setNext(Node* nextNode) { this->next = nextNode; } // ë‹¤ìŒ ë…¸ë“œë¡œ ì„¤ì •
+	Node* getPrev() { return this->prev; } // ì´ì „ ë…¸ë“œ ê°€ì ¸ì˜¤ê¸°
+	Node* getNext() { return this->next; } // ë‹¤ìŒ ë…¸ë“œ ê°€ì ¸ì˜¤ê¸°
 };
 
-// List Å¬·¡½º ¼±¾ğ
+// List í´ë˜ìŠ¤ ì„ ì–¸
 class List
 {
 private:
@@ -36,17 +36,17 @@ private:
 	Node* tail;
 	int size;
 public:
-	List() // List ÃÊ±âÈ­
+	List() // List ì´ˆê¸°í™”
 	{
 		this->head = NULL;
 		this->tail = NULL;
 		this->size = 0;
 	}
-	~List() // List ¼Ò¸êÀÚ
+	~List() // List ì†Œë©¸ì
 	{
 		Node* curNode = head;
 		Node* delNode = NULL;
-		while (curNode != NULL) // ¾ÕÂÊ ³ëµåºÎÅÍ ¼øÂ÷ÀûÀ¸·Î »èÁ¦
+		while (curNode != NULL) // ì•ìª½ ë…¸ë“œë¶€í„° ìˆœì°¨ì ìœ¼ë¡œ ì‚­ì œ
 		{
 			delNode = curNode;
 			curNode = curNode->getNext();
@@ -54,24 +54,24 @@ public:
 		}
 		delNode = NULL;
 	}
-	Node* FIND(int input); // input°ú ³ëµå¿¡ ÀúÀåµÈ ID°¡ °°À¸¸é ÇØ´ç ³ëµå ¹İÈ¯
-	void INSERT(int input, string name); // ID¿Í ÀÌ¸§À» ¸µÅ©µå ¸®½ºÆ®¿¡ »ğÀÔ
-	void PRINT(); // Ãâ·Â
-	void PRINT_REVERSE(); // ¿ª¼øÀ¸·Î Ãâ·Â
-	void SORT_NAME(); // ÀÌ¸§À¸·Î Á¤·Ä
-	void SORT_ID(); // ID·Î Á¤·Ä
-	void DEL(int input); // input°ú µ¿ÀÏÇÑ ID¸¦ °¡Áø ³ëµå¸¦ »èÁ¦
+	Node* FIND(int input); // inputê³¼ ë…¸ë“œì— ì €ì¥ëœ IDê°€ ê°™ìœ¼ë©´ í•´ë‹¹ ë…¸ë“œ ë°˜í™˜
+	void INSERT(int input, string name); // IDì™€ ì´ë¦„ì„ ë§í¬ë“œ ë¦¬ìŠ¤íŠ¸ì— ì‚½ì…
+	void PRINT(); // ì¶œë ¥
+	void PRINT_REVERSE(); // ì—­ìˆœìœ¼ë¡œ ì¶œë ¥
+	void SORT_NAME(); // ì´ë¦„ìœ¼ë¡œ ì •ë ¬
+	void SORT_ID(); // IDë¡œ ì •ë ¬
+	void DEL(int input); // inputê³¼ ë™ì¼í•œ IDë¥¼ ê°€ì§„ ë…¸ë“œë¥¼ ì‚­ì œ
 };
 
 Node* List::FIND(int input)
 {
 	Node* curNode = head;
 
-	while (curNode != NULL) // ¸ğµç ³ëµå¸¦ È®ÀÎÇÏ´Â ¹İº¹¹®
+	while (curNode != NULL) // ëª¨ë“  ë…¸ë“œë¥¼ í™•ì¸í•˜ëŠ” ë°˜ë³µë¬¸
 	{
-		if (curNode->getID() == input) // input°ú ³ëµå¿¡ ÀúÀåµÈ ID°¡ °°À¸¸é
-			return curNode; // ÇØ´ç ³ëµå ¹İÈ¯
-		curNode = curNode->getNext(); // ¸ğµç ³ëµå¸¦ È®ÀÎÇÏ´Â ¹İº¹¹®
+		if (curNode->getID() == input) // inputê³¼ ë…¸ë“œì— ì €ì¥ëœ IDê°€ ê°™ìœ¼ë©´
+			return curNode; // í•´ë‹¹ ë…¸ë“œ ë°˜í™˜
+		curNode = curNode->getNext(); // ëª¨ë“  ë…¸ë“œë¥¼ í™•ì¸í•˜ëŠ” ë°˜ë³µë¬¸
 	}
 }
 
@@ -79,24 +79,25 @@ void List::INSERT(int input, string name)
 {
 	Node* curNode = head;
 
-	if (FIND(input) != NULL) // Áßº¹µÇ´Â ID°¡ ÀÖÀ¸¸é
-		return; // ÇØ´ç ¸Ş¼­µå Å»Ãâ
+
+	if (FIND(input)!=NULL) // ì¤‘ë³µë˜ëŠ” IDê°€ ìˆìœ¼ë©´
+		return; // í•´ë‹¹ ë©”ì„œë“œ íƒˆì¶œ
 
 	Node* newNode = new Node;
 	newNode->setValue(input, name);
 
-	if (head == NULL) // ÀúÀåµÈ ³ëµå°¡ ÇÏ³ªµµ ¾øÀ¸¸é
+	if (head == NULL) // ì €ì¥ëœ ë…¸ë“œê°€ í•˜ë‚˜ë„ ì—†ìœ¼ë©´
 	{
-		tail = head = newNode; // »õ·Î¿î ³ëµå¸¦ headÀÌÀÚ tail·Î ¼±¾ğ
-		this->size++; // ³ëµåÀÇ °¹¼ö 1 Áõ°¡
+		tail = head = newNode; // ìƒˆë¡œìš´ ë…¸ë“œë¥¼ headì´ì tailë¡œ ì„ ì–¸
+		this->size++; // ë…¸ë“œì˜ ê°¯ìˆ˜ 1 ì¦ê°€
 	}
-	else // ÀÌ¹Ì ÀúÀåµÈ ³ëµå°¡ ÇÏ³ª¶óµµ ÀÖÀ¸¸é
+	else // ì´ë¯¸ ì €ì¥ëœ ë…¸ë“œê°€ í•˜ë‚˜ë¼ë„ ìˆìœ¼ë©´
 	{
-		while (curNode != NULL) // ¸ğµç ³ëµå¸¦ È®ÀÎÇÏ´Â ¹İº¹¹®
+		while (curNode != NULL) // ëª¨ë“  ë…¸ë“œë¥¼ í™•ì¸í•˜ëŠ” ë°˜ë³µë¬¸
 		{
-			if (curNode->getID() > input) // ³ëµå¿¡ ÀúÀåµÈ ID°¡ inputº¸´Ù Å©¸é
+			if (curNode->getID() > input) // ë…¸ë“œì— ì €ì¥ëœ IDê°€ inputë³´ë‹¤ í¬ë©´
 			{
-				if (curNode == head) // ÇØ´ç ³ëµå°¡ headÀÌ¸é ¸Ç ¾Õ¿¡ Ãß°¡ÇÏ°í size 1 Áõ°¡
+				if (curNode == head) // í•´ë‹¹ ë…¸ë“œê°€ headì´ë©´ ë§¨ ì•ì— ì¶”ê°€í•˜ê³  size 1 ì¦ê°€
 				{
 					newNode->setNext(curNode);
 					curNode->setPrev(newNode);
@@ -104,21 +105,22 @@ void List::INSERT(int input, string name)
 					this->size++;
 					return;
 				}
-				else // ÇØ´ç ³ëµå°¡ head°¡ ¾Æ´Ï¸é »õ·Î¿î ³ëµå¸¦ Ãß°¡
-				{ // Ãß°¡µÈ »õ·Î¿î ³ëµå¸¦ ¾ÕµÚ·Î next, prev ³ëµå ¿¬°á
+				else // í•´ë‹¹ ë…¸ë“œê°€ headê°€ ì•„ë‹ˆë©´ ìƒˆë¡œìš´ ë…¸ë“œë¥¼ ì¶”ê°€
+				{ // ì¶”ê°€ëœ ìƒˆë¡œìš´ ë…¸ë“œë¥¼ ì•ë’¤ë¡œ next, prev ë…¸ë“œ ì—°ê²°
 					curNode->getPrev()->setNext(newNode);
 					newNode->setPrev(curNode->getPrev());
 					newNode->setNext(curNode);
 					curNode->setPrev(newNode);
-					this->size++; // size 1 Áõ°¡
+					this->size++; // size 1 ì¦ê°€
 					return;
 				}
 			}
 			curNode = curNode->getNext();
 		}
 
-		// ³ëµå¿¡ ÀúÀåµÈ ID°¡ inputº¸´Ù Å« ³ëµå°¡ ¾øÀ¸¸é ¸Ç µÚ¿¡ ³ëµå Ãß°¡
-		tail->setNext(newNode);
+		// ë…¸ë“œì— ì €ì¥ëœ IDê°€ inputë³´ë‹¤ í° ë…¸ë“œê°€ ì—†ìœ¼ë©´ ë§¨ ë’¤ì— ë…¸ë“œ ì¶”ê°€
+
+		tail->setNext(newNode); 
 		newNode->setPrev(tail);
 		tail = tail->getNext();
 		this->size++;
@@ -129,7 +131,7 @@ void List::PRINT()
 {
 	Node* curNode = head;
 
-	while (curNode != NULL) // ¸ğµç ³ëµå¿¡ Á¢±ÙÇÏ¿© getNext ¸Ş¼­µå·Î ÇÏ³ª¾¿ Ãâ·Â
+	while (curNode != NULL) // ëª¨ë“  ë…¸ë“œì— ì ‘ê·¼í•˜ì—¬ getNext ë©”ì„œë“œë¡œ í•˜ë‚˜ì”© ì¶œë ¥
 	{
 		cout << curNode->getID() << " " << curNode->getName() << endl;
 		curNode = curNode->getNext();
@@ -140,7 +142,7 @@ void List::PRINT_REVERSE()
 {
 	Node* curNode = tail;
 
-	while (curNode != NULL) // ¸ğµç ³ëµå¿¡ Á¢±ÙÇÏ¿© getPrev ¸Ş¼­µå·Î ÇÏ³ª¾¿ Ãâ·Â
+	while (curNode != NULL) // ëª¨ë“  ë…¸ë“œì— ì ‘ê·¼í•˜ì—¬ getPrev ë©”ì„œë“œë¡œ í•˜ë‚˜ì”© ì¶œë ¥
 	{
 		cout << curNode->getID() << " " << curNode->getName() << endl;
 		curNode = curNode->getPrev();
@@ -149,19 +151,19 @@ void List::PRINT_REVERSE()
 
 void List::SORT_NAME()
 {
-	int temp_ID; // ÀÓ½Ã ID ¹×
-	string temp_name; // ÀÓ½Ã ÀÌ¸§ ¼±¾ğ
+	int temp_ID; // ì„ì‹œ ID ë°
+	string temp_name; // ì„ì‹œ ì´ë¦„ ì„ ì–¸
 	Node* curNode = head;
 	Node* lastNode = tail;
 
-	// ¹öºí Á¤·Ä ±¸Çö
-	while (head != lastNode) // ¸¶Áö¸· ³ëµå°¡ head°¡ ¾Æ´Ï¸é °è¼Ó ¹İº¹
+	// ë²„ë¸” ì •ë ¬ êµ¬í˜„
+	while (head != lastNode) // ë§ˆì§€ë§‰ ë…¸ë“œê°€ headê°€ ì•„ë‹ˆë©´ ê³„ì† ë°˜ë³µ
 	{
 		curNode = head;
-		while (curNode != lastNode) // ¸¶Áö¸· ³ëµå°¡ ÇöÀç ³ëµå°¡ ¾Æ´Ï¸é ¹İº¹
+		while (curNode != lastNode) // ë§ˆì§€ë§‰ ë…¸ë“œê°€ í˜„ì¬ ë…¸ë“œê°€ ì•„ë‹ˆë©´ ë°˜ë³µ
 		{
-			if (curNode->getName() > curNode->getNext()->getName()) // ÇöÀç ³ëµå¿¡ ÀúÀåµÈ ÀÌ¸§°ú ´ÙÀ½ ³ëµå¿¡ ÀúÀåµÈ ÀÌ¸§ ºñ±³
-			{ // ÇöÀç ³ëµå¿¡ ÀúÀåµÈ ÀÌ¸§ÀÌ ´õ Å©¸é ¿À¸§Â÷¼ø Á¤·ÄÀ» À§ÇØ º¯°æ
+			if (curNode->getName() > curNode->getNext()->getName()) // í˜„ì¬ ë…¸ë“œì— ì €ì¥ëœ ì´ë¦„ê³¼ ë‹¤ìŒ ë…¸ë“œì— ì €ì¥ëœ ì´ë¦„ ë¹„êµ
+			{ // í˜„ì¬ ë…¸ë“œì— ì €ì¥ëœ ì´ë¦„ì´ ë” í¬ë©´ ì˜¤ë¦„ì°¨ìˆœ ì •ë ¬ì„ ìœ„í•´ ë³€ê²½
 				temp_ID = curNode->getID();
 				temp_name = curNode->getName();
 				curNode->setValue(curNode->getNext()->getID(), curNode->getNext()->getName());
@@ -169,20 +171,20 @@ void List::SORT_NAME()
 			}
 			curNode = curNode->getNext();
 		}
-		lastNode = lastNode->getPrev(); // ¸¶Áö¸· ³ëµå¸¦ getPrev ¸Ş¼­µå·Î ÇÑ ³ëµå¾¿ ¾ÕÀ¸·Î ÀÌµ¿
+		lastNode = lastNode->getPrev(); // ë§ˆì§€ë§‰ ë…¸ë“œë¥¼ getPrev ë©”ì„œë“œë¡œ í•œ ë…¸ë“œì”© ì•ìœ¼ë¡œ ì´ë™
 	}
 
-	PRINT(); // Á¤·ÄµÈ ³ëµå Ãâ·Â
+	PRINT(); // ì •ë ¬ëœ ë…¸ë“œ ì¶œë ¥
 }
 
 void List::SORT_ID()
 {
-	int temp_ID; // ÀÓ½Ã ID ¹×
-	string temp_name; // ÀÓ½Ã ÀÌ¸§ ¼±¾ğ
+	int temp_ID; // ì„ì‹œ ID ë°
+	string temp_name; // ì„ì‹œ ì´ë¦„ ì„ ì–¸
 	Node* curNode = head;
 	Node* lastNode = tail;
 
-	//¹öºí Á¤·Ä ±¸Çö SORT_NAME ¸Ş¼­µå¿¡¼­ ÀÌ¸§ ´ë½Å ID·Î ºñ±³ÇÑ´Ù´Â °Í »©°í µ¿ÀÏ
+	//ë²„ë¸” ì •ë ¬ êµ¬í˜„ SORT_NAME ë©”ì„œë“œì—ì„œ ì´ë¦„ ëŒ€ì‹  IDë¡œ ë¹„êµí•œë‹¤ëŠ” ê²ƒ ë¹¼ê³  ë™ì¼
 	while (head != lastNode)
 	{
 		curNode = head;
@@ -205,33 +207,33 @@ void List::DEL(int input)
 {
 	Node* curNode = FIND(input);
 
-	if (curNode == head) // »èÁ¦ÇÏ´Â°Ô Ã¹¹øÂ° ³ëµåÀÏ °æ¿ì
+	if (curNode == head) // ì‚­ì œí•˜ëŠ”ê²Œ ì²«ë²ˆì§¸ ë…¸ë“œì¼ ê²½ìš°
 	{
-		if (curNode->getNext() == NULL) // Ã¹¹øÂ° ³ëµå ÇÏ³ª¹Û¿¡ ¾ø´Â °æ¿ì
+		if (curNode->getNext() == NULL) // ì²«ë²ˆì§¸ ë…¸ë“œ í•˜ë‚˜ë°–ì— ì—†ëŠ” ê²½ìš°
 		{
-			delete head; // ¸Ş¸ğ¸® ¸ÕÀú »èÁ¦
-			head = NULL; // º¯¼ö »èÁ¦, ¼­¼ø ÁÖÀÇ
+			delete head; // ë©”ëª¨ë¦¬ ë¨¼ì € ì‚­ì œ
+			head = NULL; // ë³€ìˆ˜ ì‚­ì œ, ì„œìˆœ ì£¼ì˜
 		}
-		else // Ã¹¹øÂ° ³ëµå¸¦ »èÁ¦ÇÏ¸é¼­ ³ëµå°¡ ¿©·¯°³ÀÏ °æ¿ì
+		else // ì²«ë²ˆì§¸ ë…¸ë“œë¥¼ ì‚­ì œí•˜ë©´ì„œ ë…¸ë“œê°€ ì—¬ëŸ¬ê°œì¼ ê²½ìš°
 		{
-			head = curNode->getNext(); // head¸¦ ´ÙÀ½ ³ëµå·Î ÁöÁ¤ ÈÄ
-			delete curNode; // ¸Ş¸ğ¸®¿Í º¯¼ö »èÁ¦
+			head = curNode->getNext(); // headë¥¼ ë‹¤ìŒ ë…¸ë“œë¡œ ì§€ì • í›„
+			delete curNode; // ë©”ëª¨ë¦¬ì™€ ë³€ìˆ˜ ì‚­ì œ
 			curNode = NULL;
 		}
-		this->size--; // size 1 °¨¼Ò
+		this->size--; // size 1 ê°ì†Œ
 	}
-	else if (curNode == tail) // »èÁ¦ÇÏ´Â °Ô ¸¶Áö¸· ³ëµåÀÏ °æ¿ì
+	else if (curNode == tail) // ì‚­ì œí•˜ëŠ” ê²Œ ë§ˆì§€ë§‰ ë…¸ë“œì¼ ê²½ìš°
 	{
-		tail = curNode->getPrev(); // tailÀ» »èÁ¦ÇÏ·Á´Â ³ëµå Àü ³ëµå·Î º¯°æ
-		delete curNode; // ¸Ş¸ğ¸®¿Í º¯¼ö »èÁ¦
+		tail = curNode->getPrev(); // tailì„ ì‚­ì œí•˜ë ¤ëŠ” ë…¸ë“œ ì „ ë…¸ë“œë¡œ ë³€ê²½
+		delete curNode; // ë©”ëª¨ë¦¬ì™€ ë³€ìˆ˜ ì‚­ì œ
 		curNode = NULL;
-		this->size--; // size 1 °¨¼Ò
+		this->size--; // size 1 ê°ì†Œ
 	}
-	else // Áß°£ »ğÀÔ
+	else // ì¤‘ê°„ ì‚½ì…
 	{
-		curNode->getPrev()->setNext(curNode->getNext()); // ÇöÀç ³ëµå¸¦ ±âÁØÀ¸·Î ¾Õ µÚ ³ëµå³¢¸® ¿¬°á
+		curNode->getPrev()->setNext(curNode->getNext()); // í˜„ì¬ ë…¸ë“œë¥¼ ê¸°ì¤€ìœ¼ë¡œ ì• ë’¤ ë…¸ë“œë¼ë¦¬ ì—°ê²°
 		curNode->getNext()->setPrev(curNode->getPrev());
-		delete curNode; // ÇöÀç ³ëµå »èÁ¦
+		delete curNode; // í˜„ì¬ ë…¸ë“œ ì‚­ì œ
 		curNode = NULL;
 		this->size--;
 	}
@@ -243,7 +245,7 @@ int main()
 	string name;
 	List* Linked_List = new List;
 
-	// command¿¡ µû¶ó ´Ù¸¥ ¸Ş¼­µå È£Ãâ
+	// commandì— ë”°ë¼ ë‹¤ë¥¸ ë©”ì„œë“œ í˜¸ì¶œ
 	while (command != 7)
 	{
 		cout << "Please Enter Command (1:insert, 2:print, 3:print_reverse, 4:sort_by_name, 5:sort_by_ID, 6:delete, 7:exit) :";
@@ -282,7 +284,7 @@ int main()
 			continue;
 	}
 
-	// µ¿ÀûÇÒ´ç ÇØÁ¦
+	// ë™ì í• ë‹¹ í•´ì œ
 	delete Linked_List;
 
 	return 0;
