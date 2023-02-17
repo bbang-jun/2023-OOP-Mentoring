@@ -54,6 +54,7 @@ public:
     void PRINT_PREORDER(Node* curNode);
     void PRINT_INORDER(Node* curNode);
     void PRINT_POSTORDER(Node* curNode);
+    void PRINT_LEAF(Node* curNode);
 };
 
 void Tree::INSERT(Node* curNode, int integer)
@@ -241,6 +242,16 @@ void Tree::PRINT_POSTORDER(Node* curNode)
     cout << curNode->getValue() << " ";
 }
 
+void Tree::PRINT_LEAF(Node* curNode)
+{
+    if (curNode == nullptr)
+        return;
+    PRINT_INORDER(curNode->getLeftChild());
+    if (curNode->getLeftChild() == NULL && curNode->getRightChild() == NULL)
+        cout << curNode->getValue() << " ";
+    PRINT_INORDER(curNode->getRightChild());
+}
+
 
 int main()
 {
@@ -274,6 +285,11 @@ int main()
         else if (command == 6)
         {
             tree->PRINT_POSTORDER(tree->getRoot());
+            cout << endl;
+        }
+        else if (command == 7)
+        {
+            tree->PRINT_LEAF(tree->getRoot());
             cout << endl;
         }
         else if (command == 8)
