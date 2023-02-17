@@ -113,9 +113,18 @@ void Tree::DELETE(int data) {
 			return;
 		}
 		else {//찐 leaf 노드
-			delete curNode;
-			curNode = NULL;//쓰레기값 방지
-			return;
+			if (parent->getLeftChild() == curNode) {
+				delete curNode;
+				curNode = NULL;//쓰레기값 방지
+				parent->setLeftChild(NULL);//부모 노드와의 연결 끊기
+				return;
+			}
+			else if (parent->getRightChild() == curNode) {
+				delete curNode;
+				curNode = NULL;//쓰레기값 방지
+				parent->setRightChild(NULL);
+				return;
+			}
 		}
 	}
 
@@ -124,10 +133,10 @@ void Tree::DELETE(int data) {
 		if (curNode == root) {//삭제할 노드 = root
 			if (root->getLeftChild() != NULL) {//왼쪽 자식 존재
 				tempNode = root->getLeftChild();
-				delete root;
-				root = tempNode;//기존 root 삭제하고 새로운 root 설정
-				return;
-			}
+					delete root;
+					root = tempNode;//기존 root 삭제하고 새로운 root 설정
+					return;
+				}
 			else if (root->getRightChild() != NULL) {//오른쪽 자식 존재
 				tempNode = root->getRightChild();
 				delete root;
@@ -146,7 +155,7 @@ void Tree::DELETE(int data) {
 					return;
 				}
 				else if (curNode->getRightChild() != NULL) {//curNode에게 오른쪽 자식만 있을 때
-					parent->setLeftChild(curNode->getRightChild());//parent의 새로운 right child를 curNode의 right child로 설정
+					parent->setLeftChild(curNode->getRightChild());//parent의 새로운 left child를 curNode의 right child로 설정
 					delete delNode;
 					delNode = NULL;
 					return;
@@ -154,7 +163,7 @@ void Tree::DELETE(int data) {
 			}
 			else if (parent->getRightChild() == curNode) {//curNode가 오른쪽 자식일 때
 				if (curNode->getLeftChild() != NULL) {//curNode에게 왼쪽 자식만 있을 때
-					parent->setRightChild(curNode->getLeftChild()); // parent의 새로운 left child를 curNode의 left child로 설정
+					parent->setRightChild(curNode->getLeftChild()); // parent의 새로운 right child를 curNode의 left child로 설정
 					delete delNode;
 					delNode = NULL;
 					return;
