@@ -48,7 +48,7 @@ public:
 
 	Node* getroot() { return root; }
 	void INSERT(Node* curNode,string name);
-	void FIND(Node* curNode,string name);
+	bool FIND(Node* curNode,string name);//수정 필요
 	void DELETE(string name);
 	void PRINT_PRE(Node* curNode);
 	void PRINT_IN(Node* curNode);
@@ -91,27 +91,132 @@ void Tree::INSERT(Node* curNode, string name) {
 	}
 }
 
-void Tree::FIND(Node* curNode, string name) {//순회 아무거나 써도 될 듯
-	int found = 0;
+bool Tree::FIND(Node* curNode, string name) {//순회 아무거나 써도 될 듯
 	if (curNode == nullptr)
-		return;
+		return true;
 
 	if (curNode->getData()== name) {
-		cout << name << " exists";
-		found++;
-		return;
+		cout << name << " exists" << endl;
+		return false;
 	}
-	else {
-		FIND(curNode->getleftChild(), name);
-		FIND(curNode->getrightChild(), name);
-	}
-
-	if (found == 0)
-		cout << "Not found" << endl;
+	
+	FIND(curNode->getleftChild(), name);
+	FIND(curNode->getrightChild(), name);
 }
 
 void Tree::DELETE(string name) {
+	Node* curNode = root;
+	Node* delNode = NULL;
+	Node* tempNode = NULL;
 
+	while (1) {
+		if (curNode->getData() > name) {//왼쪽
+			parent = curNode;
+			curNode = curNode->getleftChild();
+		}
+		else if (curNode->getData() < name) {//오른쪽
+			parent = curNode;
+			curNode = curNode->getrightChild();
+		}
+		else
+			break;
+	}
+
+	if (curNode->getleftChild() == NULL && curNode->getrightChild() == NULL) {
+		if (curNode == root) {
+			delete root;
+			root = NULL;
+			return;
+		}
+		else {
+			if (parent->getleftChild() == curNode) {
+				delete curNode;
+				curNode = NULL;
+				parent->setleftChild(NULL);
+			}
+			else if (parent->getrightChild() == curNode) {
+				delete curNode;
+				curNode = NULL;
+				parent->setrightChild(NULL);
+			}
+		}
+	}
+
+	if (curNode->getleftChild() == NULL || curNode->getrightChild() == NULL) {
+		if (curNode == root) {
+			if (curNode->getleftChild() != NULL) {
+				tempNode = curNode->getleftChild();
+				delete root;
+				root = tempNode;
+				return;
+			}
+			if (curNode->getrightChild() != NULL) {
+				tempNode = curNode->getrightChild();
+				delete root;
+				root = tempNode;
+				return;
+			}
+		}
+		else {
+			delNode = curNode;
+			if (parent->getleftChild() == curNode) {
+				if (curNode->getleftChild() != NULL) {
+					parent->setleftChild(curNode->getleftChild());
+					delete delNode;
+					curNode->setleftChild(NULL);
+					delNode = NULL;
+				}
+				else if (curNode->getrightChild() != NULL) {
+					parent->setleftChild(curNode->getrightChild());
+					delete delNode;
+					curNode->setrightChild(NULL);
+					delNode = NULL;
+				}
+			}
+			else if (parent->getrightChild() == curNode) {
+				if (curNode->getleftChild() != NULL) {
+					parent->setrightChild(curNode->getleftChild());
+					delete delNode;
+					curNode->setleftChild(NULL);
+					delNode = NULL;
+				}
+				else if (curNode->getrightChild() != NULL) {
+					parent->setrightChild(curNode->getrightChild());
+					delete delNode;
+					curNode->setrightChild(NULL);
+					delNode = NULL;
+				}
+			}
+		}
+	}
+
+	else if (curNode->getleftChild() != NULL && curNode->getrightChild() != NULL) {
+		Node* rightsmall = curNode->getrightChild();
+		Node* rightsmallparent = curNode;
+
+		if (rightsmall->getleftChild() == NULL) {
+			curNode->setData(rightsmall->getData());
+			if (rightsmall->getrightChild() != NULL) {
+				curNode->setrightChild(rightsmall->getrightChild());
+			}
+			else//rs=leafnode
+				curNode->setrightChild(NULL);
+			delete rightsmall;
+			rightsmall = NULL;
+			return;
+		}
+
+		else {
+			while (rightsmall->getleftChild() != NULL) {
+				rightsmallparent = rightsmall;
+				rightsmall = rightsmall->getleftChild();
+			}
+			curNode->setData(rightsmall->getData());
+			rightsmallparent->setleftChild(NULL);
+			delete rightsmall;
+			rightsmall = NULL;
+		}
+	}
 }
 
 void Tree::PRINT_PRE(Node* curNode) {//전
@@ -155,6 +260,7 @@ int main() {
 	string command;
 	string name;
 	string temp_command;
+	int found = 0;
 	Tree* tree = new Tree;
 
 	while (1) {
@@ -163,18 +269,16 @@ int main() {
 		temp_command = command.substr(0, 6);
 		
 		if (temp_command == "INSERT") {
-			//cin >> name;
 			tree->INSERT(tree->getroot(), command.substr(7));
 		}
 		
 		else if (temp_command == "DELETE") {
-			//cin >> name;
 			tree->DELETE(command.substr(7));
 		}
 
 		else if (command.substr(0,4) == "FIND") {
-			//cin >> name;
-			tree->FIND(tree->getroot(), command.substr(5));
+			if (tree->FIND(tree->getroot(), command.substr(5)) == true)
+				cout << "Not found" << endl;
 		}
 
 		if (command == "PRINT PRE") {
@@ -199,3 +303,17 @@ int main() {
 	delete tree;
 	return 0;
 }
+
+/*
+                                0
+						0                 0
+			                          0            0
+								            0  0         0
+											        0
+
+
+
+
+
+
+*/
