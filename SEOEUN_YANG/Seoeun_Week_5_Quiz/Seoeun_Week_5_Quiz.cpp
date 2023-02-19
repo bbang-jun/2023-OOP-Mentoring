@@ -48,7 +48,7 @@ public:
 
 	Node* getroot() { return root; }
 	void INSERT(Node* curNode,string name);
-	bool FIND(Node* curNode,string name);//수정 필요
+	int FIND(Node* curNode,string name,int found);//수정 필요
 	void DELETE(string name);
 	void PRINT_PRE(Node* curNode);
 	void PRINT_IN(Node* curNode);
@@ -91,17 +91,20 @@ void Tree::INSERT(Node* curNode, string name) {
 	}
 }
 
-bool Tree::FIND(Node* curNode, string name) {//순회 아무거나 써도 될 듯
+int Tree::FIND(Node* curNode, string name,int found) {//순회 아무거나 써도 될 듯
 	if (curNode == nullptr)
-		return true;
+		return found;
 
 	if (curNode->getData()== name) {
 		cout << name << " exists" << endl;
-		return false;
+		found += 100;
+		return found;
 	}
 	
-	FIND(curNode->getleftChild(), name);
-	FIND(curNode->getrightChild(), name);
+	FIND(curNode->getleftChild(), name,found);
+	FIND(curNode->getrightChild(), name,found);
+	
+	return found;
 }
 
 void Tree::DELETE(string name) {
@@ -250,8 +253,8 @@ void Tree::deallocate(Node* curNode) {//후위순회 사용해야 함
 	if (curNode == nullptr)
 		return;
 
-	PRINT_POST(curNode->getleftChild());
-	PRINT_POST(curNode->getrightChild());
+	deallocate(curNode->getleftChild());
+	deallocate(curNode->getrightChild());
 	Node* delNode = curNode;
 	delete delNode;
 }
@@ -277,7 +280,8 @@ int main() {
 		}
 
 		else if (command.substr(0,4) == "FIND") {
-			if (tree->FIND(tree->getroot(), command.substr(5)) == true)
+			found += tree->FIND(tree->getroot(), command.substr(5), found);
+			if (found==0)
 				cout << "Not found" << endl;
 		}
 
@@ -303,17 +307,3 @@ int main() {
 	delete tree;
 	return 0;
 }
-
-/*
-                                0
-						0                 0
-			                          0            0
-								            0  0         0
-											        0
-
-
-
-
-
-
-*/
