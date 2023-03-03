@@ -269,7 +269,6 @@ int main(void) {
 			cin >> integer;
 			cout << "path : ";
 			tree->FIND(tree->getRoot(), integer);
-
 		}
 		else if (Command == 4)
 		{
