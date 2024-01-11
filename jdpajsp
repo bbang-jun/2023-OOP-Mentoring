@@ -1,0 +1,559 @@
+[33mcommit 57142295071c394a35625f5d4253b70bde099727[m[33m ([m[1;36mHEAD -> [m[1;32msousky[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m, [m[1;32mhojun's_project[m[33m)[m
+Merge: 290364e 5ff9d38
+Author: BYEONGJUN KANG <90714030+bbang-jun@users.noreply.github.com>
+Date:   Fri Mar 3 10:26:47 2023 +0900
+
+    Merge pull request #25 from Nagnero/Sunwoo
+    
+    [퀴즈/05] Sunwoo
+
+[33mcommit 290364e8b82fce7c86c68f7af9c2cf76833e80de[m
+Merge: 97a237d 05a7074
+Author: BYEONGJUN KANG <90714030+bbang-jun@users.noreply.github.com>
+Date:   Fri Mar 3 09:59:26 2023 +0900
+
+    Merge pull request #24 from SeoeunY/SEOEUN
+    
+    [퀴즈/05] Seoeun
+
+[33mcommit 97a237d2d05b6574d785b80913315c32bf4ce887[m
+Merge: 599e6bd 10e1b7e
+Author: BYEONGJUN KANG <90714030+bbang-jun@users.noreply.github.com>
+Date:   Fri Mar 3 09:52:27 2023 +0900
+
+    Merge pull request #23 from moonuckjoo/Wonju
+    
+    [퀴즈/05] Wonju
+
+[33mcommit 5ff9d3805a92c20f34b0a13ce8cbdde01485b5c1[m
+Author: Nagnero <davidyeon123@naver.com>
+Date:   Sun Feb 19 15:23:12 2023 +0900
+
+    퀴즈 제출
+
+[33mcommit 05a707420232d8882a6f12fc3a480315e364a806[m
+Author: SEOEUN YANG <03ann@naver.com>
+Date:   Sun Feb 19 15:14:20 2023 +0900
+
+    fix: deallocate, FIND
+
+[33mcommit cd6ce2094635146e0ec110b1792249b089fc3075[m
+Author: SEOEUN YANG <03ann@naver.com>
+Date:   Sun Feb 19 15:07:08 2023 +0900
+
+    feat: Quiz DELETE 구현
+
+[33mcommit 78b5ce23e71aa23c52353dcf719755acd7f422d3[m
+Author: SEOEUN YANG <03ann@naver.com>
+Date:   Sun Feb 19 14:21:57 2023 +0900
+
+    feat: Quiz INSERT,PRINT 구현
+
+[33mcommit 10e1b7e9a87d60e77f8338f084a45d200db0dc79[m
+Author: moonuckjoo <dnjswn1756@naver.com>
+Date:   Sun Feb 19 14:11:52 2023 +0900
+
+    Feat: Quiz
+
+[33mcommit 599e6bdb4bc06dbf452bcc609a00f3b927968376[m
+Merge: ed37dc4 4eb3850
+Author: BYEONGJUN KANG <90714030+bbang-jun@users.noreply.github.com>
+Date:   Sat Feb 18 00:19:38 2023 +0900
+
+    Merge pull request #21 from Nagnero/Sunwoo
+    
+    [과제/04] Sunwoo
+
+[33mcommit ed37dc40db9a5fb6d48c1488782f98145af85859[m
+Merge: 6a66ddd 12d7f2f
+Author: BYEONGJUN KANG <90714030+bbang-jun@users.noreply.github.com>
+Date:   Sat Feb 18 00:08:21 2023 +0900
+
+    Merge pull request #20 from moonuckjoo/Wonju
+    
+    [과제/04] Wonju
+
+[33mcommit 6a66ddd13f3254e7863d3d2b97e92485dc9ec87e[m
+Merge: 3bd45e8 250aea4
+Author: BYEONGJUN KANG <90714030+bbang-jun@users.noreply.github.com>
+Date:   Sat Feb 18 00:04:16 2023 +0900
+
+    Merge pull request #22 from SeoeunY/SEOEUN
+    
+    [과제/04] Seoeun
+
+[33mcommit 250aea45a77f16da3130c4d4440a3d901c01d60d[m
+Author: SEOEUN YANG <03ann@naver.com>
+Date:   Fri Feb 17 22:52:08 2023 +0900
+
+    fix: DELETE 오류 수정
+
+[33mcommit 4eb38507f1426a7afc508ef2da20e8067396b939[m
+Merge: ae910a5 3bd45e8
+Author: Nagnero <96233261+Nagnero@users.noreply.github.com>
+Date:   Fri Feb 17 20:57:26 2023 +0900
+
+    Merge branch 'main' into Sunwoo
+
+[33mcommit ae910a57b988f90b350e9d5c81b10e408524c90a[m
+Author: Nagnero <davidyeon123@naver.com>
+Date:   Fri Feb 17 20:43:45 2023 +0900
+
+    Fix: 3-1 코드 누락 재 업로드
+
+[33mcommit f4c3249876efafbef84918ba9f617a88817358bb[m
+Author: Nagnero <davidyeon123@naver.com>
+Date:   Fri Feb 17 20:26:28 2023 +0900
+
+    Feat: 4-1 delete 메서드 함수 마무리
+
+[33mcommit 08b2f311b7f16b92b74a5ce08aabc6b08db2ae9b[m
+Author: unknown <davidyeon123@naver.com>
+Date:   Fri Feb 17 14:05:57 2023 +0900
+
+    Feat: 4-1 find 메서드함수 구현 및 print leaf 메서드함수 수정
+
+[33mcommit c7f1385be2a1fbbef70600893475daac06649984[m
+Author: unknown <davidyeon123@naver.com>
+Date:   Fri Feb 17 11:46:24 2023 +0900
+
+    Feat: 4-1 print leaf 메서드함수 구현
+
+[33mcommit 12d7f2f756f29a91742f1cbe4222be8f173661d7[m
+Author: moonuckjoo <dnjswn1756@naver.com>
+Date:   Fri Feb 17 05:37:36 2023 +0900
+
+    Feat: finish
+
+[33mcommit 5801cbc3fb21851ae38ab337722ea959cc920e7b[m
+Author: unknown <davidyeon123@naver.com>
+Date:   Fri Feb 17 05:33:20 2023 +0900
+
+    Feat: 4-1 print inorder, postporder 메서드함수 구현
+
+[33mcommit aa73ba9cbb5a3565a5cfc021c52cc6c6ca6e0038[m
+Author: unknown <davidyeon123@naver.com>
+Date:   Fri Feb 17 05:19:24 2023 +0900
+
+    Feat: 4-1 insert, print preorder 메서드 함수 구현; delete 메서드함수 자식이 두개인 노드 삭제 제외 구현
+
+[33mcommit 44d9bc8cdc3823d93ec0c2304f2f6bacb0160d66[m
+Author: moonuckjoo <dnjswn1756@naver.com>
+Date:   Fri Feb 17 05:14:43 2023 +0900
+
+    Feat: Delete
+
+[33mcommit 1eaa79e85e593b02c925cea1a31394ec6be46713[m
+Author: SEOEUN YANG <03ann@naver.com>
+Date:   Fri Feb 17 00:30:03 2023 +0900
+
+    fix: 4-1 DELETE 자식노드 2개 수정
+
+[33mcommit b910c21b7922333bb3b8080ac806bb35fc67d642[m
+Author: moonuckjoo <dnjswn1756@naver.com>
+Date:   Fri Feb 17 00:05:23 2023 +0900
+
+    Feat: print
+
+[33mcommit 04df3835e7d399dedda62611951f92e6794b50c4[m
+Author: moonuckjoo <dnjswn1756@naver.com>
+Date:   Thu Feb 16 20:58:52 2023 +0900
+
+    Feat: INSERT
+
+[33mcommit 3a1694b5eda9fc6a40701d5b021cbc826f72f171[m
+Author: SEOEUN YANG <03ann@naver.com>
+Date:   Wed Feb 15 21:57:16 2023 +0900
+
+    fix: FIND 수정 및 주석
+
+[33mcommit aed5ab9a5d27a156de0bb7c5fecb4223e80b4c5d[m
+Author: SEOEUN YANG <03ann@naver.com>
+Date:   Wed Feb 15 21:55:49 2023 +0900
+
+    fix: 4-1 DELETE 수정
+
+[33mcommit 9f74c06f6ec73f3bb170bbd2129cbfeaed4fecde[m
+Author: SEOEUN YANG <03ann@naver.com>
+Date:   Wed Feb 15 21:20:50 2023 +0900
+
+    feat: 4-1 FIND 구현
+
+[33mcommit 70e2848a59857da06cf761f4abc0bdac839b3548[m
+Author: SEOEUN YANG <03ann@naver.com>
+Date:   Wed Feb 15 17:40:15 2023 +0900
+
+    feat: DELETE 구현
+
+[33mcommit a7193f285f9403ef14095967e3f96edbbaf0cff1[m
+Author: SEOEUN YANG <03ann@naver.com>
+Date:   Wed Feb 15 16:40:56 2023 +0900
+
+    feat: 4-1 INSERT, PRINT, deallocate 구현
+
+[33mcommit 22bdb3bd23b4cb7c3d695a89ee3d4d625b70eefe[m
+Author: moonuckjoo <dnjswn1756@naver.com>
+Date:   Wed Feb 15 11:48:09 2023 +0900
+
+    Feat: class
+
+[33mcommit 3bd45e8360b6a9644ca6effdda9b8db77f2649d0[m
+Merge: 6837a6f 8100e16
+Author: BYEONGJUN KANG <90714030+bbang-jun@users.noreply.github.com>
+Date:   Sun Feb 12 15:09:40 2023 +0900
+
+    Merge pull request #19 from moonuckjoo/Wonju
+    
+    [과제/03] Wonju
+
+[33mcommit 6837a6fb65fc16826c844760baaa92c621474492[m
+Merge: b6d3790 7d4210f
+Author: BYEONGJUN KANG <90714030+bbang-jun@users.noreply.github.com>
+Date:   Sun Feb 12 15:09:10 2023 +0900
+
+    Merge pull request #17 from Nagnero/Sunwoo
+    
+    [과제/03] Sunwoo
+
+[33mcommit 7d4210f27de8ad7b6a96c11ac3ac84ddef68b223[m
+Merge: d625ad6 b6d3790
+Author: Nagnero <96233261+Nagnero@users.noreply.github.com>
+Date:   Sun Feb 12 11:52:29 2023 +0900
+
+    Merge branch 'bbang-jun:main' into Sunwoo
+
+[33mcommit b6d379062e7c4bbb89ed9d22e103ed4e2ed3f772[m
+Merge: 208e7ac 6d87038
+Author: BYEONGJUN KANG <90714030+bbang-jun@users.noreply.github.com>
+Date:   Sat Feb 11 16:37:08 2023 +0900
+
+    Merge pull request #16 from SeoeunY/SEOEUN
+    
+    [과제/03] Seoeun
+
+[33mcommit 6d87038903a769c6832a6e17951b43791bbc80b8[m
+Author: SEOEUN YANG <03ann@naver.com>
+Date:   Sat Feb 11 00:03:24 2023 +0900
+
+    fix : DELETE 수정
+
+[33mcommit 2d8bb64c2c8dfb7b249e6abe4f359a514b6ee8b3[m
+Author: SEOEUN YANG <03ann@naver.com>
+Date:   Sat Feb 11 00:00:05 2023 +0900
+
+    fix : DELETE 수정
+
+[33mcommit 8100e16a9015caff7ba36f4bd4a4fb2ceaf77daf[m
+Author: moonuckjoo <dnjswn1756@naver.com>
+Date:   Fri Feb 10 23:52:46 2023 +0900
+
+    Feat: 뭔가 이상한데 뭐가 이상한지 모르겠음
+
+[33mcommit d625ad64f82c2a78dbac772419ab7f980b2c7cf3[m
+Author: Nagnero <davidyeon123@naver.com>
+Date:   Fri Feb 10 12:40:32 2023 +0900
+
+    Refactor: 3-1 일부 코드 수정 및 주석 추가
+
+[33mcommit 208e7acbe695358022825cc24870a9865fb521e0[m
+Merge: 4dca9e9 a762bb5
+Author: BYEONGJUN KANG <90714030+bbang-jun@users.noreply.github.com>
+Date:   Fri Feb 10 02:16:39 2023 +0900
+
+    Merge pull request #15 from moonuckjoo/Wonju
+    
+    [과제/02]Wonju
+
+[33mcommit a16af6c59470f0c4fc686feaa5c9a7217e1df4c2[m
+Author: SEOEUN YANG <03ann@naver.com>
+Date:   Fri Feb 10 01:59:57 2023 +0900
+
+    fix : 최종구현
+
+[33mcommit f7d6d372cedf7e568c543f2f30c99cc2803a04f2[m
+Author: SEOEUN YANG <03ann@naver.com>
+Date:   Fri Feb 10 00:43:37 2023 +0900
+
+    feat: SORT 구현
+
+[33mcommit 918bfcebfeae692d88e038a69a4d1edd70dcd981[m
+Author: SEOEUN YANG <03ann@naver.com>
+Date:   Fri Feb 10 00:11:20 2023 +0900
+
+    fix : INSERT 중복제거
+
+[33mcommit a762bb5b0f723a046d6912a3657a2862c8bc038b[m
+Author: moonuckjoo <dnjswn1756@naver.com>
+Date:   Thu Feb 9 23:49:03 2023 +0900
+
+    fix: 2주차 과제 피드백 반영
+
+[33mcommit 87c55bb091251ad39dcd15dc16b7234b54e99a7f[m
+Author: SEOEUN YANG <03ann@naver.com>
+Date:   Thu Feb 9 23:12:21 2023 +0900
+
+    fix: INSERT 중간삽입 구현
+
+[33mcommit 8def205c828ce9185147d1cc1af5d42620998913[m
+Author: Nagnero <davidyeon123@naver.com>
+Date:   Thu Feb 9 16:55:11 2023 +0900
+
+    Feat: 메모리 누수 방지코드 구현 및 일부 코드 리팩토링
+
+[33mcommit d6c972c01aa8d13dcbdbcecca45adc2b1de073f5[m
+Author: Nagnero <davidyeon123@naver.com>
+Date:   Thu Feb 9 15:42:28 2023 +0900
+
+    Feat: delete와 exit 기능 구현
+
+[33mcommit 78efd35b9a8c8480fd068bf9495937e51e9a50bf[m
+Author: Nagnero <davidyeon123@naver.com>
+Date:   Thu Feb 9 14:26:17 2023 +0900
+
+    Feat: 3-1 Sort by name 기능 일부 수정 및 Sort by ID 기능 구현
+
+[33mcommit deea323c877dd0f146cca8eac0e3b67887512fcb[m
+Author: SEOEUN YANG <03ann@naver.com>
+Date:   Thu Feb 9 14:20:36 2023 +0900
+
+    feat : 3-1 PRIT_REV 구현 및 INSERT 수정
+
+[33mcommit 2a92b63bde712e8d34c2a502e7bce7856f2ee056[m
+Author: SEOEUN YANG <03ann@naver.com>
+Date:   Thu Feb 9 13:33:48 2023 +0900
+
+    fix : 3-1 DELETE 구현
+
+[33mcommit 1d2c0e34b8208e06e18aa848bf9413a1ee45fb01[m
+Author: Nagnero <davidyeon123@naver.com>
+Date:   Thu Feb 9 13:30:34 2023 +0900
+
+    Feat: 3-1 Sort by name 기능 구현
+
+[33mcommit 066ee58617c42fea3e31d7cc2c82aea578b170be[m
+Author: SEOEUN YANG <03ann@naver.com>
+Date:   Thu Feb 9 13:29:22 2023 +0900
+
+    feat : 3-1 DELETE 구현
+
+[33mcommit 32f778acafd1095fa3a1bca90e4f2c15cacf768c[m
+Author: SEOEUN YANG <03ann@naver.com>
+Date:   Thu Feb 9 13:18:47 2023 +0900
+
+    feat : 3-1 PRINT 구현
+
+[33mcommit f126c09e166900c9a33bb49e8f37bca1bb1605ce[m
+Author: SEOEUN YANG <03ann@naver.com>
+Date:   Thu Feb 9 13:00:06 2023 +0900
+
+    feat : 3-1 INSERT 구현
+
+[33mcommit 4dca9e97e515ce1986a450258dfce551da1a4e2a[m
+Merge: f75a372 c0b4b3c
+Author: BYEONGJUN KANG <90714030+bbang-jun@users.noreply.github.com>
+Date:   Thu Feb 9 12:52:38 2023 +0900
+
+    Merge pull request #12 from Nagnero/Sunwoo
+    
+    [과제/02] Sunwoo
+
+[33mcommit c0b4b3cc54f8828ffda4bd48caaf0ff13759b409[m
+Author: Nagnero <davidyeon123@naver.com>
+Date:   Thu Feb 9 12:50:10 2023 +0900
+
+    Refactor: 2-2 피드백 반영 후 수정
+
+[33mcommit 601235df23d0bd835d9b693d3deb40242a33368f[m
+Author: Nagnero <davidyeon123@naver.com>
+Date:   Thu Feb 9 11:32:32 2023 +0900
+
+    Feat: 3-1 print reverse 기능 구현
+
+[33mcommit 985eafc80cab2c9b531be450d5b2c4d037d06d45[m
+Author: Nagnero <davidyeon123@naver.com>
+Date:   Thu Feb 9 11:26:03 2023 +0900
+
+    Feat: 3-1 insert함수 구현 및 예외처리
+
+[33mcommit c2064bf81afe6a5a7bbb41ad9d3f713be77bfe72[m
+Author: SEOEUN YANG <03ann@naver.com>
+Date:   Thu Feb 9 01:28:28 2023 +0900
+
+    feat : 3-1 기본 골격
+
+[33mcommit f401dbbce4b0e82c4f63346c081b74af52d25634[m
+Author: SEOEUN YANG <03ann@naver.com>
+Date:   Thu Feb 9 01:03:10 2023 +0900
+
+    3주차 정리
+
+[33mcommit f75a37223ead7473780be3a21d2011ccc5f53fd8[m
+Merge: c6f2c9d faa0cab
+Author: 방지민 <96281320+Bjimin@users.noreply.github.com>
+Date:   Thu Feb 9 00:05:41 2023 +0900
+
+    Merge pull request #13 from SeoeunY/SEOEUN
+    
+    [과제/02] Seoeun
+
+[33mcommit faa0cabdd2a1a3827c9263371e9e44c0c0dfd891[m
+Author: SEOEUN YANG <03ann@naver.com>
+Date:   Wed Feb 8 23:57:21 2023 +0900
+
+    fix: 2-2 exit 오류 수정
+
+[33mcommit 46a6dbf101c7c86a2e79fb73435185818a721950[m
+Author: Nagnero <davidyeon123@naver.com>
+Date:   Wed Feb 8 15:09:06 2023 +0900
+
+    Feat: insert함수 일부 구현 및 print함수 구현
+
+[33mcommit 1684b5f27a9e2184abda4ea1cd23b166b62c4f15[m
+Author: moonuckjoo <dnjswn1756@naver.com>
+Date:   Fri Feb 3 14:28:09 2023 +0900
+
+    Feat: find
+
+[33mcommit 729c616755ea47a2048c76440644ef3aad28e592[m
+Author: moonuckjoo <dnjswn1756@naver.com>
+Date:   Fri Feb 3 13:02:11 2023 +0900
+
+    Feat: class
+
+[33mcommit fbf88d7b62e7f047b73580eec258f20b56dded1f[m
+Author: SEOEUN YANG <03ann@naver.com>
+Date:   Fri Feb 3 12:59:32 2023 +0900
+
+    fix:2-2 메모리 누수 방지
+
+[33mcommit 8443102c75849a2d0ae8fb27e116f5608b40e1ec[m
+Author: moonuckjoo <dnjswn1756@naver.com>
+Date:   Fri Feb 3 12:06:56 2023 +0900
+
+    Feat: 기본 틀 완성
+
+[33mcommit b74c1360b9fea4325eac44ca9c0c7fae0e5fce24[m
+Author: Nagnero <davidyeon123@naver.com>
+Date:   Fri Feb 3 10:44:16 2023 +0900
+
+    Feat: 2-2 메모리해제 코드 수정 및 주석 추가
+
+[33mcommit 40820fdb98bb8b372f1488ce45f15f9b6355933b[m
+Author: SEOEUN YANG <03ann@naver.com>
+Date:   Fri Feb 3 00:38:29 2023 +0900
+
+    fix: 2-2 주석 달기
+
+[33mcommit c467497b8de8c4f467e7390948530a26bd26d215[m
+Author: SEOEUN YANG <03ann@naver.com>
+Date:   Fri Feb 3 00:20:19 2023 +0900
+
+    feat: 2-2 1차 완성
+
+[33mcommit 75d53d9fb5ca5f930d5d4413cc50986a71637c39[m
+Author: SEOEUN YANG <03ann@naver.com>
+Date:   Fri Feb 3 00:02:47 2023 +0900
+
+    feat: 2-2 print_species 구현
+
+[33mcommit 83db406a961a8d7bb516257d52f795de6cbcd042[m
+Author: SEOEUN YANG <03ann@naver.com>
+Date:   Thu Feb 2 23:51:31 2023 +0900
+
+    feat: 2-2 print_all 구현
+
+[33mcommit 14483db248ca42a21ff2610f685b1b9ff6a83acf[m
+Author: moonuckjoo <dnjswn1756@naver.com>
+Date:   Thu Feb 2 21:53:08 2023 +0900
+
+    Feat: exit
+
+[33mcommit 0813cb3739bb55aed98729644087e212a6033ff4[m
+Author: SEOEUN YANG <03ann@naver.com>
+Date:   Thu Feb 2 14:58:40 2023 +0900
+
+    feat: 2-2 new_animal 구현
+
+[33mcommit a97f998da28c8cb02f85094edebba46669000622[m
+Author: Nagnero <davidyeon123@naver.com>
+Date:   Thu Feb 2 14:45:02 2023 +0900
+
+    Feat: 2-2 메모리 누수 코드 추가(미구현) 및 클래스 메서드 선언 후 정의 방식으로 수정
+
+[33mcommit 28fff6f392593bce560f5e49728f4b6e757babeb[m
+Author: Nagnero <davidyeon123@naver.com>
+Date:   Thu Feb 2 12:56:36 2023 +0900
+
+    Feat: 2-2 print_species 기능 구현
+
+[33mcommit 69dfa9e99bd8d0a043ba3a9bc0f24c867cbdf659[m
+Author: Nagnero <davidyeon123@naver.com>
+Date:   Thu Feb 2 12:43:20 2023 +0900
+
+    Feat: 2-2 print_all 기능 구현
+
+[33mcommit 29876e81ce42591629aeb445bd82fddeb64b0bae[m
+Author: Nagnero <davidyeon123@naver.com>
+Date:   Thu Feb 2 12:28:07 2023 +0900
+
+    Feat: 2-2 new_animal 기능 추가
+
+[33mcommit c2333fb0b2a7b5f835cc435ebc8c5db63af20796[m
+Author: SEOEUN YANG <03ann@naver.com>
+Date:   Thu Feb 2 00:10:00 2023 +0900
+
+    fix: 2-1 주석
+
+[33mcommit e87f9847b3cab46786eb5ed572e969b1da96f023[m
+Author: SEOEUN YANG <03ann@naver.com>
+Date:   Thu Feb 2 00:06:38 2023 +0900
+
+    fix: 2-1 최종 완성
+
+[33mcommit a7e4590f583030592ef0b371858af43d69ff7a83[m
+Author: SEOEUN YANG <03ann@naver.com>
+Date:   Wed Feb 1 23:39:23 2023 +0900
+
+    feat: 2-2 기본 골격 제작
+
+[33mcommit 43d648ff8f887c80d31bbc3c40402dec505a9d32[m
+Author: SEOEUN YANG <03ann@naver.com>
+Date:   Wed Feb 1 23:12:14 2023 +0900
+
+    fix: 함수 코드 정리 및 수정 (디버그) print 함수 수정 필요
+
+[33mcommit ea225468217c360c20c3702f4cf66d1ae06fb24b[m
+Author: SEOEUN YANG <03ann@naver.com>
+Date:   Wed Feb 1 22:58:48 2023 +0900
+
+    feat: print 구현
+
+[33mcommit 33ef08b16ee1599d1678784e0c118809928ff8ba[m
+Author: SEOEUN YANG <03ann@naver.com>
+Date:   Wed Feb 1 22:50:34 2023 +0900
+
+    feat: change 구현
+
+[33mcommit 88e03f4650669b7c6abab9d23bf40f83675c48f1[m
+Author: SEOEUN YANG <03ann@naver.com>
+Date:   Wed Feb 1 22:33:03 2023 +0900
+
+    feat: find 구현
+
+[33mcommit aa5b2b84e651cabdc0d990a57ecdb9db6ae7d75f[m
+Author: SEOEUN YANG <03ann@naver.com>
+Date:   Wed Feb 1 21:17:19 2023 +0900
+
+    feat: insert 구현
+
+[33mcommit 6d8cb023704093c7ed3dbfe66c4d94e5b7dd681c[m
+Author: Nagnero <davidyeon123@naver.com>
+Date:   Wed Feb 1 14:38:55 2023 +0900
+
+    Feat: 2-2 기본적인 프로그램 흐름 틀 작성
+
+[33mcommit 31a69efe515ad07a5daca637baea36e9b4141b5d[m
+Author: Nagnero <davidyeon123@naver.com>
+Date:   Wed Feb 1 13:37:22 2023 +0900
+
+    Fix: 동적할당 해제 부분 수정 및 메모리 누수 코드 삭제, 코드 설명 주석 추가
